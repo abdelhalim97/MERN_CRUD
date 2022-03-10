@@ -18,9 +18,9 @@ code {
   :root{
     --color-text-base:225,135,135;
     --color-text-sec:173,156,157;
-    --color-text-third:15,23,42;
     --color-base:225,135,135;
     --color-sec:173,156,157;
-    --color-third:15,23,42;
+    --color-text-third:255,255,255;
+    --color-third:255,255,255;
 }
 }
