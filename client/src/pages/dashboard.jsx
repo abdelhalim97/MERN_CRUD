@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Grid } from '@material-ui/core'
 import { LinkIconButton } from '../components/containers/units'
 import { faFutbol,faRightFromBracket,faEarthAfrica } from '@fortawesome/free-solid-svg-icons'
@@ -6,7 +6,8 @@ import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
 import { Home, Terrain, AllTerrains } from '../components';
 import { ErrorPage } from '.'
-
+import { useDispatch } from 'react-redux'
+import {getProjects} from '../actions/projects'
 export const Dashboard = () => {
     const first=true
     const handleLogout=async()=>{
@@ -41,6 +42,10 @@ export const Dashboard = () => {
             fnc:handleLogout
         },
     ]
+    const dispatch=useDispatch()
+    useEffect(() => {
+        dispatch(getProjects())
+    }, [dispatch])
   return (
     <>
         <Grid container>

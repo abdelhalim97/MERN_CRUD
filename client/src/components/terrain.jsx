@@ -4,14 +4,15 @@ import ReactPaginate from 'react-paginate'
 import { Container, Grid } from '@material-ui/core'
 import { TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux'
+
 export const Terrain = () => {
     const [data, setData] = useState([])
     const [pageNumber, setPageNumber] = useState(0)
     const dataPerPage=1
     const pagesVisited=dataPerPage*pageNumber
-    useEffect(() => {
-      console.log('fetching the data')
-  }, [])
+    const projects=useSelector((state)=>state.projects)
+    console.log(projects)
   const pageCount = Math.ceil(data.length/dataPerPage)
   const changePage=({selected})=>setPageNumber(selected)
   return (

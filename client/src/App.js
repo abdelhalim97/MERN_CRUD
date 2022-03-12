@@ -2,11 +2,16 @@ import './index.css'
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import {Login,ErrorPage,Dashboard} from "./pages"
 import { Footer } from "./components";
-import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 const first=true
+// const dispatch=useDispatch()
+// useEffect(() => {
+//   dispatch(get)
+// }, [third])
+
 function App() {
   return (
-    <>
       <BrowserRouter>
       {first&&<Dashboard/>}
         <Routes>
@@ -18,7 +23,6 @@ function App() {
         {!first &&<div style={{ height:'53vh' }}></div>}
         <Footer/>
       </BrowserRouter>
-    </>
     
   );
 }
