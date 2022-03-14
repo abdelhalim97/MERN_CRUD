@@ -7,3 +7,11 @@ export const getProjects=()=>async(dispatch)=>{
     } catch (error) {
         console.log(error.message)
     }}
+    export const createProject =(project)=>async(dispatch)=>{
+        try {
+            const {data}=await api.createProject(project)
+            dispatch({type:'CREATE',payload:data})
+        } catch (error) {
+            console.log(error.message)
+        }
+    }

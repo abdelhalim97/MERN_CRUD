@@ -11,9 +11,9 @@ router.get('/',async (req,res)=>{//a controller
         res.status(404).json({message:error.message})
     }
 })
-router.post('/add',async(req,res)=>{
-    const project = req.body
-    const newProject = new projectModel(project)
+router.post('/',async(req,res)=>{
+    const { title} = req.body;
+        const newProject = new projectModel({ title,leader:'me',team:[{me:'me'}], })
     try {
         await  newProject.save()
         res.status(201).json(newProject)   

@@ -4,8 +4,8 @@ const projectSchema=mongoose.Schema({
     title:String,
     leader:String,
     team:String,
-    list:[String],//list have cards
-    visibility:Boolean,
+    // list:[String],//list have cards
+    // visibility:Boolean,
     createdAt:{
         type:Date,
         default:new Date()
