@@ -2,9 +2,10 @@ import mongoose from 'mongoose'
 
 const projectSchema=mongoose.Schema({
     title:String,
-    leader:String,
-    team:String,
-    // list:[String],//list have cards
+    // leader:String,
+    // team:String,
+    file64:String,
+    list:[String],//list have cards
     // visibility:Boolean,
     createdAt:{
         type:Date,

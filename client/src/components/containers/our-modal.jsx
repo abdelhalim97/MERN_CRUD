@@ -4,6 +4,8 @@ import { IconButton } from './units';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { createProject } from '../../actions/projects';
+import FileBase64 from 'react-file-base64';
+import {makeStyles} from "@material-ui/core/styles"
 
 export const OurModal = () => {
   const [open, setOpen] = useState(false);
@@ -27,6 +29,21 @@ export const OurModal = () => {
     dispatch(createProject(form))
     setOpen(false)
   }
+  const useStyles = makeStyles({
+    styling : {
+      '& input':{
+        background: 'linear-gradient(top, #f9f9f9, #e3e3e3)',
+        borderRadius: '3px',
+        outline: 'none',
+        cursor: 'pointer'
+      }
+    },
+})
+const classes = useStyles()
+console.log(document.getElementsByTagName("input")[0])
+const changeId=()=>{
+  
+}
   const fildsData =[
     {
       id:'title',
@@ -56,11 +73,13 @@ export const OurModal = () => {
               onChange={(e)=>{handleForm(data.id,e.target.value)}} color="secondary"/>
             </div>
             )}
-            <div className='flex justify-center'>
+            <div className={`flex justify-center ${classes.styling}`}>
               <label  htmlFor="contained-button-file">
-                <Typography variant='body1' className='cursor-pointer text-base border-2 border-base px-2 rounded-md font-bold'>Upload the Project Image</Typography>
+                
+              <FileBase64 type='file' onDone={({base64})=>{handleForm('file64',base64)}} />
+                  {/* <Typography variant='body1' className='cursor-pointer text-base border-2 border-base px-2 rounded-md font-bold block'>
+                    Upload the Project Image</Typography> */}
               </label>
-              <input  id="contained-button-file" type="file" className='hidden' />
             </div>
             <div className='flex justify-center'>
               <IconButton title='add Stadium' type="submit" icon={faAdd} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
