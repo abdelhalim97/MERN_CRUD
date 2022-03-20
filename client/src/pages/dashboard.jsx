@@ -4,7 +4,7 @@ import { LinkIconButton } from '../components/containers/units'
 import { faFutbol,faRightFromBracket,faEarthAfrica } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
-import { Home, Terrain, AllTerrains, Navbar } from '../components';
+import { Home, Project, AllProjects, Navbar, UpdateProject } from '../components';
 import { ErrorPage } from '.'
 import { useDispatch } from 'react-redux'
 import {getProjects} from '../actions/projects'
@@ -58,8 +58,9 @@ export const Dashboard = () => {
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
-                    {first&&<Route path="/projects" element={<Terrain/>}></Route>}
-                    {first&&<Route path="/my-projects" element={<AllTerrains/>}></Route>}
+                    {first&&<Route path="/projects" element={<Project/>}></Route>}
+                    {first&&<Route path="/my-projects" element={<AllProjects/>}></Route>}
+                    {first&&<Route path="/projects/:id" element={<UpdateProject/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>
                 </Routes>
             </Grid>

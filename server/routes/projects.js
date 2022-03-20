@@ -21,4 +21,10 @@ router.post('/',async(req,res)=>{
         res.status(409).json({message:error.message})
     }
 })
+router.patch('/:id',async(req,res)=>{
+    const {id:_id}=req.params
+    if(!mongoose.types.ObjectId.isValid(_id)) return res.status(404).send('no post with that id')
+    const updateProject = await projectModel.findByIdAndUpdate(_id,project,{new:true})//new:true to recieve the updated version
+    res.json(updateProject)
+})
 export default router

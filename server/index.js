@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import routers from './routes/projects.js'
 const app=express()
-app.use(bodyParser.json({extended:true})) //calling middlewares |extended => bodparser will include any tpe of data not just strings/we can add ,limit:"30mb"
+app.use(bodyParser.json({extended:true,limit:'50mb'})) //calling middlewares |extended => bodparser will include any tpe of data not just strings/we can add ,limit:"30mb"
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use('/',routers)
