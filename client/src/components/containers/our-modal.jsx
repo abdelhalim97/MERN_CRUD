@@ -40,10 +40,6 @@ export const OurModal = () => {
     },
 })
 const classes = useStyles()
-console.log(document.getElementsByTagName("input")[0])
-const changeId=()=>{
-  
-}
   const fildsData =[
     {
       id:'title',

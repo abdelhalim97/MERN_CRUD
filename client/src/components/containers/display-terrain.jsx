@@ -2,10 +2,8 @@ import { Box, Grid, TextField, Typography } from '@material-ui/core'
 import React, {  useState } from 'react'
 import { IconButtonNormal } from './units'
 import {faTrash,faPenToSquare, faCircleXmark, faCircleCheck} from '@fortawesome/free-solid-svg-icons'
-export const DisplayTerrain = (props) => {
-  const [update, setupdate] = useState(false)
-  const [name, setName] = useState(props.name)
-  const [cost, setCost] = useState(props.cost)
+import { Link } from 'react-router-dom'
+export const DisplayTerrain = ({d}) => {
   const updateStadium =()=>{
     console.log('update')
   }
@@ -14,38 +12,35 @@ export const DisplayTerrain = (props) => {
   }
   return (
     <>
-      <Grid container className=' my-4' justifyContent="space-around" >
-        <Grid sm={9} md={7} item container justifyContent="center">
-          <Grid item xs={11}>
-
-            <Box mt={9}></Box>
-          </Grid>
-        </Grid>
-        <Grid sm={9} md={4} item className='bg-gray-100 rounded-md relative'>
-          <div className='absolute w-full'>
-            <div className='flex justify-end'>
-              {!update?<IconButtonNormal icon={faPenToSquare} fnc={()=>{setupdate(true)}} styles='text-green-500' title=''/>
+      <Grid item xs={12} sm={6} md={4}  className='relative'>
+        <div className='absolute w-full' >
+          <div className=' w-full'>
+          <Typography variant='subtitle1' className=' text-base font-bold'>&nbsp;{d.title}</Typography>
+            {/* {!update?<IconButtonNormal icon={faPenToSquare} fnc={()=>{setupdate(true)}} styles='text-green-500' title=''/>
               :<>
                 <IconButtonNormal icon={faCircleXmark} fnc={()=>{setupdate(false)}} styles='text-red-500' title=''/>
                 <IconButtonNormal icon={faCircleCheck} fnc={()=>{updateStadium();setupdate(false)}} styles='text-green-500' title=''/>
               </>}
-              <IconButtonNormal icon={faTrash} fnc={()=>{deleteStadium()}} styles='text-red-500' title=''/>
-            </div>
+            <IconButtonNormal icon={faTrash} fnc={()=>{deleteStadium()}} styles='text-red-500' title=''/> */}
           </div>
-          <div className='flex items-center h-full'>
-            <div className='mx-auto'>
-              {!update?
-              <>
-                <Typography variant='subtitle1' className='text-center'>Stadium name: <span className='text-base font-bold'>{props.name}</span></Typography>
-                <Typography variant='subtitle1' className='text-center'>cost: <span className='text-base font-bold'>{props.cost}</span></Typography>
-              </>:
-              <>
-                <TextField variant='standard' label='name' value={name} onChange={(e)=>{setName(e.target.value)}} /><br/>
-                <TextField variant='standard' label='cost' value={cost} onChange={(e)=>{setCost(e.target.value)}} />
-              </>}
-            </div>
+        </div>
+        <Link  to={'/projects/:{id}'}>
+        <div className='relative'>
+          <div className='bg-slate-900 h-full w-full absolute opacity-25 hover:opacity-50'></div>
+          <img src={`${d.file64}`} className='w-40 h-40 mx-auto object-cover' alt='project img' />
+        </div>
+        </Link>
+        
+        {/* <div className='flex items-center h-full'>
+          <div className='mx-auto'>
+            {!update?
+            <>
+            </>:
+            <>
+              <TextField variant='standard' label='name' value={title} onChange={(e)=>{setTitle(e.target.value)}} /><br/>
+            </>}
           </div>
-        </Grid>
+        </div> */}
       </Grid>
     </>
   )

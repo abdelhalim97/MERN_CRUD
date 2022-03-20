@@ -4,7 +4,7 @@ import { LinkIconButton } from '../components/containers/units'
 import { faFutbol,faRightFromBracket,faEarthAfrica } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
-import { Home, Terrain, AllTerrains } from '../components';
+import { Home, Terrain, AllTerrains, Navbar } from '../components';
 import { ErrorPage } from '.'
 import { useDispatch } from 'react-redux'
 import {getProjects} from '../actions/projects'
@@ -14,7 +14,6 @@ export const Dashboard = () => {
         // await signOut(auth)
         console.log('signout')
     }
-    // TODO: add route displaying all elements 
     const buttonsData=[
         {
             id:0,
@@ -49,17 +48,18 @@ export const Dashboard = () => {
   return (
     <>
         <Grid container>
-            <Grid item xs={3} sm={2}  className='bg-sec relative' style={{ height:'94vh' }}>
-                <div className='text-third text-center text-sm sm:text-xl font-bold'>SPORTIFY</div>
+            <Grid item xs={3} sm={2}  className='bg-sec relative ' style={{ height:'100vh' }}>
+                <div className='text-third text-center text-sm sm:text-xl font-bold'>TRELLO</div>
                 {buttonsData.map(data=>
                     <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
                 )}
             </Grid>
             <Grid item xs={9} sm={10} >
+                <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
-                    {first&&<Route path="/terrain" element={<Terrain/>}></Route>}
-                    {first&&<Route path="/all-stadiums" element={<AllTerrains/>}></Route>}
+                    {first&&<Route path="/projects" element={<Terrain/>}></Route>}
+                    {first&&<Route path="/my-projects" element={<AllTerrains/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>
                 </Routes>
             </Grid>

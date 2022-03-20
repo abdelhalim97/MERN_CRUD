@@ -5,7 +5,7 @@ const projectSchema=mongoose.Schema({
     // leader:String,
     // team:String,
     file64:String,
-    list:[String],//list have cards
+    // list:[String],//list have cards
     // visibility:Boolean,
     createdAt:{
         type:Date,

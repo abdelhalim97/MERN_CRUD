@@ -1,9 +1,9 @@
 export default (projects=[],action)=>{
     switch(action.type){
         case 'FETCH_ALL':
-            return action.paylaod
+            return action.payload
         case 'CREATE':
-            return [...projects,action.paylaod]
+            return [...projects,action.payload]
         default:
             return projects
     }

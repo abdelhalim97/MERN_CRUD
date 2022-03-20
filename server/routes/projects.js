@@ -5,7 +5,6 @@ const router=express.Router()
 router.get('/',async (req,res)=>{//a controller
     try {
         const displayProject=await projectModel.find()
-        console.log(displayProject)
         res.status(200).json(displayProject)
     } catch (error) {
         res.status(404).json({message:error.message})
