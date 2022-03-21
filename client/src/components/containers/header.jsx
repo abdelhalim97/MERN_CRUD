@@ -1,5 +1,5 @@
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
-import { Button, Container, Grid, TextField, Typography } from '@material-ui/core'
+import { Button, Container, Grid, Menu, MenuItem, TextField, Typography } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateProject } from '../../actions/projects'
@@ -7,7 +7,10 @@ import { IconButton } from './units'
 
 export const Header = ({project}) => {
   const dispatch=useDispatch()
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   const [state, setState] = useState(false)
+  const [addUser, setAddUser] = useState('Pick a User to Add')
   const [projecTtitle,setProjectTitle] = useState(project?.title)
   useEffect(() => {
     setProjectTitle(project?.title)
@@ -17,6 +20,16 @@ export const Header = ({project}) => {
     dispatch(updateProject(project?._id,{title:projecTtitle}))
     setState(false)
   }
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => {
+    setAnchorEl(null)
+    setAddUser('Pick a User to Add')
+  }
+  const handlePickUser = () =>{
+    // TODO: add the user from addUser state
+    handleClose()
+  }
+
   return (
     <>
       <Container maxWidth='lg' className='my-5' >
@@ -27,7 +40,15 @@ export const Header = ({project}) => {
             <button type='submit'></button>
             </form>}
           <Typography variant='body1' className='text-sec font-bold'>{projecTtitle} Workspace</Typography>
-          <IconButton fnc={()=>{console.log('f')}} title='invite' icon={faUserPlus} styles='bg-sec text-third'/>
+          <div>
+            <IconButton fnc={handleClick} title='invite' icon={faUserPlus} styles='bg-sec text-third'/>
+            <Menu anchorEl={anchorEl} open={open} onClose={handleClose}
+             id="basic-menu" MenuListProps={{'aria-labelledby': 'basic-button'}}>
+            <MenuItem><TextField value={addUser} disabled/></MenuItem>
+              <MenuItem divider onClick={()=>setAddUser('Logout')} className=' text-center rounded-md'>Logout</MenuItem>
+              <div className='flex justify-center'> <Button variant='contained' className='bg-sec' onClick={handleClose}>add this user</Button></div>
+            </Menu>
+          </div>
         </Grid>
       </Container>
     </>
