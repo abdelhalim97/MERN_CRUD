@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import projectModel from '../models/projectModel.js';
 
 const router=express.Router()
@@ -22,9 +23,10 @@ router.post('/',async(req,res)=>{
     }
 })
 router.patch('/:id',async(req,res)=>{
-    const {id:_id}=req.params
-    if(!mongoose.types.ObjectId.isValid(_id)) return res.status(404).send('no post with that id')
-    const updateProject = await projectModel.findByIdAndUpdate(_id,project,{new:true})//new:true to recieve the updated version
+    const {id}=req.params
+    const project = req.body;
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no post with that id')
+    const updateProject = await projectModel.findByIdAndUpdate(id,project,{new:true})//new:true to recieve the updated version
     res.json(updateProject)
 })
 export default router

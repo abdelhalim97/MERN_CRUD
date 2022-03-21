@@ -24,7 +24,7 @@ export const OurModal = () => {
     boxShadow: 24,
     p: 4,
   };
-  const addStadium=(e)=>{
+  const addProject=(e)=>{
     e.preventDefault()
     dispatch(createProject(form))
     setOpen(false)
@@ -52,7 +52,7 @@ const classes = useStyles()
   ]
   return (
     <>
-      <Button onClick={handleOpen} className='text-third bg-base rounded-2xl'>Add a Stadium</Button>
+      <Button onClick={handleOpen} className='text-third bg-base rounded-2xl'>Create a Project</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -62,7 +62,7 @@ const classes = useStyles()
           <Typography id="modal-modal-title" variant="h6" component="h2" className='text-center bg-base text-third rounded-3xl p-1 mb-3'>
             Add a new Stadium
           </Typography>
-          <form onSubmit={addStadium} >
+          <form onSubmit={addProject} >
             {fildsData.map(data=>
             <div key={data.id} className='flex justify-center '>
               <TextField variant='standard' label={data.label} className='my-3 w-1/2' value={form[data.id]} 

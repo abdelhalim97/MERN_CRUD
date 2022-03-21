@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 export const Project = () => {
   const [pageNumber, setPageNumber] = useState(0)
-  const dataPerPage=2
+  const dataPerPage=12
   const pagesVisited=dataPerPage*pageNumber
   const data=useSelector((state)=>state.projects)
   const pageCount = Math.ceil(data.length/dataPerPage)
@@ -20,7 +20,7 @@ export const Project = () => {
           <OurModal/>
         </Grid>
           <Grid item xs={12}>
-            <Grid container  justifyContent="space-around">
+            <Grid container  justifyContent="space-between">
               {data.length>0 &&
               data?.slice(pagesVisited,pagesVisited+dataPerPage).map(d=>
                 <DisplayProject key={d._id} d={d}  />
