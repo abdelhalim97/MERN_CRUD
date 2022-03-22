@@ -4,7 +4,7 @@ import { LinkIconButton } from '../components/containers/units'
 import { faFutbol,faRightFromBracket,faEarthAfrica } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
-import { Home, Project, AllProjects, Navbar, UpdateProject } from '../components';
+import { Home, Projects, AllProjects, Navbar, UpdateProject } from '../components';
 import { ErrorPage } from '.'
 import { useDispatch } from 'react-redux'
 import {getProjects} from '../actions/projects'
@@ -44,11 +44,12 @@ export const Dashboard = () => {
     const dispatch=useDispatch()
     useEffect(() => {
         dispatch(getProjects())
+        console.log('getProjects')
     }, [dispatch])
   return (
     <>
-        <Grid container>
-            <Grid item xs={3} sm={2}  className='bg-sec relative ' style={{ height:'100vh' }}>
+        <Grid container style={{ minHeight:'93.4vh' }}>
+            <Grid item xs={3} sm={2}  className='bg-sec relative ' >
                 <div className='text-third text-center text-sm sm:text-xl font-bold'>TRELLO</div>
                 {buttonsData.map(data=>
                     <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
@@ -58,7 +59,7 @@ export const Dashboard = () => {
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
-                    {first&&<Route path="/projects" element={<Project/>}></Route>}
+                    {first&&<Route path="/projects" element={<Projects/>}></Route>}
                     {first&&<Route path="/my-projects" element={<AllProjects/>}></Route>}
                     {first&&<Route path="/projects/:id" element={<UpdateProject/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>

@@ -8,7 +8,7 @@ router.get('/',async (req,res)=>{//a controller
         const displayProject=await projectModel.find()
         res.status(200).json(displayProject)
     } catch (error) {
-        res.status(404).json({message:error.message})
+        res.status(404).json({message:error})
     }
 })
 router.post('/',async(req,res)=>{
@@ -19,14 +19,21 @@ router.post('/',async(req,res)=>{
         await  newProject.save()
         res.status(201).json(newProject)   
     } catch (error) {
-        res.status(409).json({message:error.message})
+        res.status(409).json({message:error})
     }
 })
 router.patch('/:id',async(req,res)=>{
     const {id}=req.params
     const project = req.body;
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no post with that id')
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')
     const updateProject = await projectModel.findByIdAndUpdate(id,project,{new:true})//new:true to recieve the updated version
     res.json(updateProject)
+})
+router.delete('/:id',async(req,res)=>{
+    const {id}=req.params
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')
+    await projectModel.findByIdAndRemove(id)
+    res.json({message:'Project Deleted'})
+
 })
 export default router
