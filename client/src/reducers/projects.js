@@ -7,7 +7,9 @@ export default (projects=[],action)=>{
         case 'UPDATE':
             return projects.map((project)=>(action.payload._id===project._id?action.payload:project))
         case 'DELETE':
-            return projects.filter((project)=>(action.payload!==project._id))
+            const projects2=[]
+            Object.assign(projects,projects2)
+            return projects2.filter((project)=>(action.payload!==project._id))
         default:
             return projects
     }

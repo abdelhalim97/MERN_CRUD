@@ -34,6 +34,5 @@ router.delete('/:id',async(req,res)=>{
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')
     await projectModel.findByIdAndRemove(id)
     res.json({message:'Project Deleted'})
-
 })
 export default router

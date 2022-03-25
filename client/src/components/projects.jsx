@@ -13,9 +13,7 @@ export const Projects = () => {
   const dispatch=useDispatch()
   useEffect(() => {
     setDataSelector(data)
-    // console.log(dataSelector)
   }, [dataSelector,data,dispatch])
-  
   const dataPerPage=12
   const pagesVisited=dataPerPage*pageNumber
   const pageCount = Math.ceil(dataSelector.length/dataPerPage)
@@ -30,7 +28,7 @@ export const Projects = () => {
             <Grid container  justifyContent="space-between">
               {dataSelector.length>0 &&
               dataSelector?.slice(pagesVisited,pagesVisited+dataPerPage).map(d=>
-                <DisplayProject key={d._id} d={d} setDataSelector={setDataSelector} />
+                <DisplayProject key={d._id} d={d}  />
               )}
             </Grid>
             {dataSelector.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}

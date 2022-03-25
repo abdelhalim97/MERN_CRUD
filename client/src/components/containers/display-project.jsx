@@ -12,7 +12,6 @@ export const DisplayProject = ({d}) => {
   useEffect(() => {
     setdata(d)
   }, [dispatch,d,data])
-  console.log(d._id)
   
   const deleteAProject =()=>{
     dispatch(deleteProject(d._id))

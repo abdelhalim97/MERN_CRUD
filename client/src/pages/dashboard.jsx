@@ -44,7 +44,7 @@ export const Dashboard = () => {
     const dispatch=useDispatch()
     useEffect(() => {
         dispatch(getProjects())
-        console.log('getProjects')
+        // console.log('getProjects')
     }, [dispatch])
   return (
     <>
