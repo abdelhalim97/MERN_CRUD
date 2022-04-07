@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Typography } from '@material-ui/core'
 import React from 'react'
+import Typography from '@mui/material/Typography';
 
 export const TypographyIcon = (props) => {
   return (

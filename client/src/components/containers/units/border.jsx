@@ -1,5 +1,6 @@
-import { Container, Grid } from '@material-ui/core'
 import React from 'react'
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 export const Border = ({children}) => {
   return (

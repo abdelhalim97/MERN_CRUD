@@ -1,6 +1,8 @@
-import { Button, TextField, Typography } from '@material-ui/core'
 import React from 'react'
-
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import {GoogleLogin} from 'react-google-login'
 export const FormSignup = ({setFormData,formData,setForm}) => {
   const handleChangeSignUp=(value,key)=>setFormData({...formData,...{[key]:value}})
   const signUp=async()=>{
@@ -33,7 +35,7 @@ export const FormSignup = ({setFormData,formData,setForm}) => {
                 )}
             </div>
             <div className='flex justify-center'>
-                <Button variant='contained' className='text-third bg-base my-3 rounded-2xl' onClick={()=>{signUp()}}>SignUp</Button>
+                <Button variant='contained' className='text-third bg-base my-3 rounded-2xl w-full' onClick={()=>{signUp()}}>SignUp</Button>
             </div>
         </form>
         <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Already have an account?

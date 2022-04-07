@@ -1,4 +1,5 @@
-import { Grid, Typography } from '@material-ui/core'
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import React, {  useEffect, useState } from 'react'
 import { IconButtonNormal } from './units'
 import {faTrash} from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +13,6 @@ export const DisplayProject = ({d}) => {
   useEffect(() => {
     setdata(d)
   }, [dispatch,d,data])
-  
   const deleteAProject =()=>{
     dispatch(deleteProject(d._id))
   }

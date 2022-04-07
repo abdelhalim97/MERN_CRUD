@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button } from '@material-ui/core'
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
 export const LinkIconButton = (props) => {
   return (

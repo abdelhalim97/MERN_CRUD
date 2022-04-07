@@ -1,8 +1,8 @@
 import { faTrello } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
 
 export const Navbar = () => {
     const [state, setState] = useState(false)

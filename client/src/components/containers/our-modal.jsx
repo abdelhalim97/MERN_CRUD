@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { Box,  Button,   Modal, TextField, Typography } from '@material-ui/core';
 import { IconButton } from './units';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { createProject } from '../../actions/projects';
 import FileBase64 from 'react-file-base64';
-import {makeStyles} from "@material-ui/core/styles"
+// import {makeStyles} from "@material-ui/core/styles"
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 export const OurModal = () => {
   const [open, setOpen] = useState(false);
@@ -29,17 +33,17 @@ export const OurModal = () => {
     dispatch(createProject(form))
     setOpen(false)
   }
-  const useStyles = makeStyles({
-    styling : {
-      '& input':{
-        background: 'linear-gradient(top, #f9f9f9, #e3e3e3)',
-        borderRadius: '3px',
-        outline: 'none',
-        cursor: 'pointer'
-      }
-    },
-})
-const classes = useStyles()
+//   const useStyles = makeStyles({
+//     styling : {
+//       '& input':{
+//         background: 'linear-gradient(top, #f9f9f9, #e3e3e3)',
+//         borderRadius: '3px',
+//         outline: 'none',
+//         cursor: 'pointer'
+//       }
+//     },
+// })
+// const classes = useStyles()
   const fildsData =[
     {
       id:'title',
@@ -69,7 +73,11 @@ const classes = useStyles()
               onChange={(e)=>{handleForm(data.id,e.target.value)}} color="secondary"/>
             </div>
             )}
-            <div className={`flex justify-center ${classes.styling}`}>
+            <div className={`flex justify-center
+             
+             `}
+            //  ${classes.styling}
+             >
               <label  htmlFor="contained-button-file">
                 
               <FileBase64 type='file' onDone={({base64})=>{handleForm('file64',base64)}} />

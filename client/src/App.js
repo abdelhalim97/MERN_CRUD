@@ -2,12 +2,12 @@ import './index.css'
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import {Login,ErrorPage,Dashboard} from "./pages"
 import { Footer } from "./components";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getProjects } from './actions/projects';
 
 function App() {
-  const first=true
+  const first=useSelector((state)=>state.auth)
   const dispatch=useDispatch()
   useEffect(() => {
     dispatch(getProjects())

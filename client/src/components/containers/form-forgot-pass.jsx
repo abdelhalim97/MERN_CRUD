@@ -1,5 +1,7 @@
-import { Button, TextField, Typography } from '@material-ui/core'
 import React from 'react'
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export const FormForgotPass = ({setForgetPassStat,forgetPassStat,setForgetPass,forgetPass,setForm}) => {
     const resetPassword=async()=>{

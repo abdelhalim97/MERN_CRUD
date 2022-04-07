@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Container } from '@material-ui/core'
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+
 import { FormForgotPass, FormLogin, FormSignup } from './containers'
 export const Form = () => {
   const [forgetPass, setForgetPass] = useState('')

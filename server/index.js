@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use('/',routers)
 const CONNECTION__URL=process.env.CONNECTION__URL
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||5000;
 mongoose.connect(CONNECTION__URL)
     .then(()=>app.listen(PORT,()=>console.log('server running')))
     .catch((err)=>console.log(err))

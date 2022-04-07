@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Grid } from '@material-ui/core'
+import Grid from '@mui/material/Grid';
 import { LinkIconButton } from '../components/containers/units'
 import { faFutbol,faRightFromBracket,faEarthAfrica } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
