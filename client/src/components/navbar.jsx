@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
+import { useDispatch } from 'react-redux'
 
 export const Navbar = () => {
     const [state, setState] = useState(false)
@@ -11,6 +12,10 @@ export const Navbar = () => {
         { title: "Projects", path: "/projects" },
         { title: "My Projects", path: "/my-projects" },
     ]
+    const dispatch=useDispatch()
+    const handleLogout=()=>{
+        dispatch({type:'LOGOUT'})
+    }
   return (
         <nav className="bg-white w-full border-b  md:static ">
           <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -51,7 +56,7 @@ export const Navbar = () => {
                       }
                   </ul>
                   <div className='w-1/6 mt-8 md:mt-0'>
-                    <Button className='text-sec hover:text-base text-md border-base' variant='outlined'>logout</Button>
+                    <Button className='text-sec hover:text-base text-md border-base' variant='outlined' onClick={handleLogout}>logout</Button>
                   </div>
               </div>
           </div>

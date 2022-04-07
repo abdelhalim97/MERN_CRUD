@@ -2,7 +2,6 @@ import React from 'react'
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import {GoogleLogin} from 'react-google-login'
 export const FormSignup = ({setFormData,formData,setForm}) => {
   const handleChangeSignUp=(value,key)=>setFormData({...formData,...{[key]:value}})
   const signUp=async()=>{
