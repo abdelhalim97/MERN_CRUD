@@ -12,6 +12,6 @@ const projectSchema=mongoose.Schema({
         default:new Date()
     }
 })
-const projectModel=mongoose.model('ProjectModel',projectSchema) //turning the shema to model|must be singular & uppercase
+const projectModel=mongoose.model('ProjectModel',projectSchema) //turning the schema to model|must be singular & uppercase
 //An instance of a model is called a document.
 export default projectModel

@@ -4,14 +4,14 @@ import Typography from '@mui/material/Typography';
 import React from 'react'
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
-import img from '../../assets/images/gmail-icon.png'
 import {GoogleLogin} from 'react-google-login'
 import { useDispatch } from 'react-redux';
+import { signIn } from '../../actions/auth';
 
 export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
   const dispatch = useDispatch()
-  const logIn=async()=>{
-    console.log('login')
+  const handleLogIn=async()=>{
+    dispatch(signIn(formDataLogIn))
   }
   const handleSetFormtoForgotPasword=()=>setForm('forgotPassword')
   const handleChangeLogIn=(value,key)=>setFormDataLogIn({...formDataLogIn,...{[key]:value}})
@@ -38,7 +38,7 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
     {
       id:2,
       title:"Login",
-      fnc:logIn,
+      fnc:handleLogIn,
       styles:'text-third bg-base my-3 rounded-2xl w-full',
       variant:'contained'
     },
@@ -80,11 +80,6 @@ const responseF=()=>{
           onFailure={responseF}
           cookiePolicy={'single_host_origin'}/>
         </div>
-        {/* <div className='flex justify-center my-2'>
-          <Button className='rounded-full'>
-            <img src={img} />
-          </Button>
-        </div> */}
         <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Don't have an account?
           <Button variant='text' className=' text-base text-xs' onClick={()=>{setForm('signUp')}}>Sign Up</Button>
         </Typography>

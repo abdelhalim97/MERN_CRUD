@@ -14,7 +14,7 @@ function App() {
     setfirstSelector(first)
     dispatch(getProjects())
   }, [dispatch])
-  console.log(first)
+  // console.log(first)
   return (
       <BrowserRouter>
       {first&&<Dashboard/>}
