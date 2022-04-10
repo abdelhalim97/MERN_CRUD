@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProjects } from './actions/projects';
 
 function App() {
-  const first=useSelector((state)=>state?.auth)
-  const [firstSelector, setfirstSelector] = useState(useSelector((state)=>state?.auth))
+  const selector = useSelector((state)=>state?.auth)
+  const first = JSON.parse(localStorage.getItem('profile'))
+  const [firstSelector, setfirstSelector] = useState(first)
   const dispatch=useDispatch()
   useEffect(() => {
     setfirstSelector(first)
     dispatch(getProjects())
-  }, [dispatch])
-  // console.log(first)
+  }, [selector])
   return (
       <BrowserRouter>
       {first&&<Dashboard/>}
