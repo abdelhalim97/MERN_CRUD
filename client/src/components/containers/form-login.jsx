@@ -7,6 +7,7 @@ import Chip from '@mui/material/Chip';
 import {GoogleLogin} from 'react-google-login'
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../actions/auth';
+import { googleSignUp } from '../../api';
 
 export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
   const dispatch = useDispatch()
@@ -49,9 +50,12 @@ const responseS= async (res)=>{
   const token = res?.tokenId
   try {
     dispatch({type:'AUTH',data:{result,token}})
+    
   } catch (error) {
   console.log(error)
   }
+  await googleSignUp(JSON.parse(localStorage.getItem('profile')))
+
 }
 const responseF=()=>{
   console.log('fff')

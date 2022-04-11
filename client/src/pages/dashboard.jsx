@@ -6,10 +6,11 @@ import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
 import { Home, Projects, AllProjects, Navbar, UpdateProject } from '../components';
 import { ErrorPage } from '.'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {getProjects} from '../actions/projects'
 export const Dashboard = () => {
-    const first=true
+    const selector = useSelector((state)=>state.auth)
+    const isAdmin = selector?.authData?.result?.role === 'ADMIN'
     const handleLogout=async()=>{
         // await signOut(auth)
         console.log('signout')
@@ -49,19 +50,19 @@ export const Dashboard = () => {
   return (
     <>
         <Grid container style={{ minHeight:'93.4vh' }}>
-            <Grid item xs={3} sm={2}  className='bg-sec relative ' >
+            {isAdmin && <Grid item xs={3} sm={2}  className='bg-sec relative ' >
                 <div className='text-third text-center text-sm sm:text-xl font-bold'>TRELLO</div>
                 {buttonsData.map(data=>
                     <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
                 )}
-            </Grid>
-            <Grid item xs={9} sm={10} >
+            </Grid>}
+            <Grid item xs={isAdmin ? 9 : 12} sm={isAdmin ? 10 : 12} >
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
-                    {first&&<Route path="/projects" element={<Projects/>}></Route>}
-                    {first&&<Route path="/my-projects" element={<AllProjects/>}></Route>}
-                    {first&&<Route path="/projects/:id" element={<UpdateProject/>}></Route>}
+                    {selector&&<Route path="/projects" element={<Projects/>}></Route>}
+                    {selector&&<Route path="/my-projects" element={<AllProjects/>}></Route>}
+                    {selector&&<Route path="/projects/:id" element={<UpdateProject/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>
                 </Routes>
             </Grid>

@@ -1,12 +1,13 @@
 import { faTrello } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux'
 
 export const Navbar = () => {
     const [state, setState] = useState(false)
+    const navigate = useNavigate()
     const navigation = [
         { title: "Profile", path: "/" },
         { title: "Projects", path: "/projects" },
@@ -15,6 +16,7 @@ export const Navbar = () => {
     const dispatch=useDispatch()
     const handleLogout=()=>{
         dispatch({type:'LOGOUT'})
+        navigate('/')
     }
   return (
         <nav className="bg-white w-full border-b  md:static ">

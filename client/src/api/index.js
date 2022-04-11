@@ -7,4 +7,6 @@ export const createProject=(newProject)=>axios.post(url,newProject)
 export const updateProject=(id,projectData)=> axios.patch(`${url}${id}`,projectData)
 export const deleteProject=(id)=> axios.delete(`${url}${id}`)
 export const signIn = (formData)=>API.post('users/signin',formData)
+export const googleSignUp = (data)=>API.post('users/gmail-signup',data)
+
 export const signUp = (formData)=>axios.post(signUpUrl,formData)

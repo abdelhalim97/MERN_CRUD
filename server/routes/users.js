@@ -3,18 +3,30 @@ import userModel from '../models/userModel.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 const router=express.Router()
-router.post('/signup',async(req,res)=>{
-    const {name,password,email,confirm_password}=req.body
-    
+router.post('/gmail-signup',async(req,res)=>{
+    console.log(req.body.result)
+    const {email,name,imageUrl}=req.body.result
     try {
         const existingUser =  await userModel.findOne({email})
-    if(existingUser) return res.status(404).json({message:'user exists'})
-    if(confirm_password!==password) return res.status(400).json({message:'Password doesnt match'})
-    const hashedPassword = await bcrypt.hash(password,12)
-    const result = await userModel.create({email,password:hashedPassword,name})
-    const token =jwt.sign({email:result.email,id:result._id},'test',{expiresIn:'1h'})
-    res.status(200).json({result,token})
-
+        if(existingUser) return res.status(200).json({message:'User google account exists'})
+        const result = await userModel.create({email,name,imageUrl,role:'USER'})
+        res.status(200).json({message:'User google acount created'})
+    } catch (error) {
+        res.status(500).json({message:error})
+    }
+})
+router.post('/signup',async(req,res)=>{
+    const {name,password,email,confirm_password}=req.body
+    try {
+        const existingUser =  await userModel.findOne({email})
+        if(existingUser) return res.status(404).json({message:'user exists'})
+        if(password.trim().length===0) return res.status(400).json({message:'password is required'})
+        if(password.length<6) return res.status(400).json({message:'password has to be longer than 5'})
+        if(confirm_password!==password) return res.status(400).json({message:'Password doesnt match'})
+        const hashedPassword = await bcrypt.hash(password,12)
+        const result = await userModel.create({email,password:hashedPassword,name,role:'ADMIN'})
+        const token =jwt.sign({email:result.email,id:result._id},'test',{expiresIn:'1h'})
+        res.status(200).json({result,token})
     } catch (error) {
         res.status(409).json({message:error})
     }

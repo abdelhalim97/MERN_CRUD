@@ -6,7 +6,7 @@ export default (state=null , action) => {
         //return {...state,authData:action?.data}
     case 'LOGOUT':
       localStorage.clear()
-      return null
+      return {authData:null}
   default:
     return state
   }
