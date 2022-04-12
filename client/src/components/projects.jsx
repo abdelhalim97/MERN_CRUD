@@ -5,6 +5,7 @@ import { Border, TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import Grid from '@mui/material/Grid';
+import { deleteProject } from '../actions/projects'
 
 export const Projects = () => {
   const [pageNumber, setPageNumber] = useState(0)
@@ -13,7 +14,7 @@ export const Projects = () => {
   const dispatch=useDispatch()
   useEffect(() => {
     setDataSelector(data)
-  }, [dataSelector,data,dispatch])
+  }, [data,dispatch,dataSelector])
   const dataPerPage=12
   const pagesVisited=dataPerPage*pageNumber
   const pageCount = Math.ceil(dataSelector.length/dataPerPage)
@@ -26,8 +27,8 @@ export const Projects = () => {
         </Grid>
           <Grid item xs={12}>
             <Grid container  justifyContent="space-between">
-              {dataSelector.length>0 &&
-              dataSelector?.slice(pagesVisited,pagesVisited+dataPerPage).map(d=>
+              {data.length>0 &&
+              data?.slice(pagesVisited,pagesVisited+dataPerPage).map(d=>
                 <DisplayProject key={d._id} d={d}  />
               )}
             </Grid>

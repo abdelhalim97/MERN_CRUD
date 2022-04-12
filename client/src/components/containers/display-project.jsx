@@ -1,6 +1,5 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import React, {  useEffect, useState } from 'react'
 import { IconButtonNormal } from './units'
 import {faTrash} from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
@@ -8,13 +7,9 @@ import { useDispatch } from 'react-redux'
 import {deleteProject} from '../../actions/projects'
 export const DisplayProject = ({d}) => {
   const navigate=useNavigate()
-  const [data, setdata] = useState(d)
   const dispatch=useDispatch()
-  useEffect(() => {
-    setdata(d)
-  }, [dispatch,d,data])
   const deleteAProject =()=>{
-    dispatch(deleteProject(d._id))
+    dispatch(deleteProject(d))
   }
   return (
     <>

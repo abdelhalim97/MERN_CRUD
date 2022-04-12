@@ -4,7 +4,6 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 const router=express.Router()
 router.post('/gmail-signup',async(req,res)=>{
-    console.log(req.body.result)
     const {email,name,imageUrl}=req.body.result
     try {
         const existingUser =  await userModel.findOne({email})

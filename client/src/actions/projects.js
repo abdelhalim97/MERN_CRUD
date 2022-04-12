@@ -23,10 +23,10 @@ export const getProjects=()=>async(dispatch)=>{
         console.log(error);
       }
     };
-    export const deleteProject=(id)=>async(dispatch)=>{
+    export const deleteProject=(data)=>async(dispatch)=>{
       try {
-        await api.deleteProject(id)
-        dispatch({type:'DELETE',action:id})
+        await api.deleteProject(data)
+        dispatch({type:'DELETE',payload:data})
       } catch (error) {
         console.log(error)
       }

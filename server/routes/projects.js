@@ -13,9 +13,9 @@ router.get('/',async (req,res)=>{//a controller
     }
 })
 router.post('/',auth,async(req,res)=>{
-    const { title,file64} = req.body;
-        const newProject = new projectModel({ title,file64})
-        // ,leader:'me',team:[{me:'me'}],list:null 
+    const projectData = req.body;
+    const leader = req.userId.toString()
+    const newProject = new projectModel({...projectData,leader,team:[leader],list:[[{}]]})
     try {
         await  newProject.save()
         res.status(201).json(newProject)
