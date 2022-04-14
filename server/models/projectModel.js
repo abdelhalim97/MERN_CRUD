@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const projectSchema=mongoose.Schema({
     title:{type:String,required:true},
@@ -9,4 +9,4 @@ const projectSchema=mongoose.Schema({
 },{timestamps:true})
 const projectModel=mongoose.model('ProjectModel',projectSchema) //turning the schema to model|must be singular & uppercase
 //An instance of a model is called a document.
-export default projectModel
+exports.default = projectModel

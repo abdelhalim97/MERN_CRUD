@@ -1,10 +1,17 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import projectsRouters from './routes/projects.js'
-import usersRouters from './routes/users.js'
-import dotenv from 'dotenv'
+const express = require('express')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+const cors = require('cors')
+var projectsRouters = require('./routes/projects')
+const usersRouters = require('./routes/users')
+const dotenv = require('dotenv')
+
+// import bodyParser from 'body-parser';
+// import mongoose from 'mongoose';
+// import cors from 'cors';
+// import projectsRouters from './routes/projects.js'
+// import usersRouters from './routes/users.js'
+// import dotenv from 'dotenv'
 
 const app=express()
 dotenv.config()

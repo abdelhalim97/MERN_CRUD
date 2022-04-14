@@ -1,9 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import projectModel from '../models/projectModel.js';
-import auth from '../middleware/auth.js'
+const express = require('express')
+const mongoose = require('mongoose')
+const projectModel = require('../models/projectModel')
+var auth = require('../middleware/auth')
 
-const router=express.Router()
+var router=express.Router()
 router.get('/',async (req,res)=>{//a controller
     try {
         const displayProject=await projectModel.find()
@@ -13,6 +13,7 @@ router.get('/',async (req,res)=>{//a controller
     }
 })
 router.post('/',auth,async(req,res)=>{
+    console.log(req.userId.toString())
     const projectData = req.body;
     const leader = req.userId.toString()
     const newProject = new projectModel({...projectData,leader,team:[leader],list:[[{}]]})
@@ -36,4 +37,4 @@ router.delete('/:id',auth,async(req,res)=>{
     await projectModel.findByIdAndRemove(id)
     res.json({message:'Project Deleted'})
 })
-export default router
+module.exports = router

@@ -1,10 +1,14 @@
-import express from 'express';
-import userModel from '../models/userModel.js'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-const router=express.Router()
+const express = require('express')
+var bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
+const userModel = require('../models/userModel')
+
+var router=express.Router()
+// var ObjectId = require('mongodb').ObjectID;
+
 router.post('/gmail-signup',async(req,res)=>{
-    const {email,name,imageUrl}=req.body.result
+    const {email,name,imageUrl,googleId}=req.body.result
+    // console.log(new ObjectID())
     try {
         const existingUser =  await userModel.findOne({email})
         if(existingUser) return res.status(200).json({message:'User google account exists'})
@@ -43,4 +47,4 @@ router.post('/signin',async(req,res)=>{
         res.status(500).json({message:error})
     }
 })
-export default router
+module.exports = router
