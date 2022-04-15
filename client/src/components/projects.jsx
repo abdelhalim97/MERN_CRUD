@@ -5,7 +5,6 @@ import { Border, TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import Grid from '@mui/material/Grid';
-import { deleteProject } from '../actions/projects'
 
 export const Projects = () => {
   const [pageNumber, setPageNumber] = useState(0)

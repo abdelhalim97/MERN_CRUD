@@ -9,4 +9,4 @@ const projectSchema=mongoose.Schema({
 },{timestamps:true})
 const projectModel=mongoose.model('ProjectModel',projectSchema) //turning the schema to model|must be singular & uppercase
 //An instance of a model is called a document.
-exports.default = projectModel
+module.exports = projectModel
