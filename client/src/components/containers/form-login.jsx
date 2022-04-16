@@ -50,12 +50,10 @@ const responseS= async (res)=>{
   const token = res?.tokenId
   try {
     dispatch({type:'AUTH',data:{result,token}})
-    
   } catch (error) {
   console.log(error)
   }
   await googleSignUp(JSON.parse(localStorage.getItem('profile')))
-
 }
 const responseF=()=>{
   console.log('fff')

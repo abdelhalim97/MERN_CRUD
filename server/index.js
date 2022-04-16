@@ -6,13 +6,6 @@ var projectsRouters = require('./routes/projects')
 const usersRouters = require('./routes/users')
 const dotenv = require('dotenv')
 
-// import bodyParser from 'body-parser';
-// import mongoose from 'mongoose';
-// import cors from 'cors';
-// import projectsRouters from './routes/projects.js'
-// import usersRouters from './routes/users.js'
-// import dotenv from 'dotenv'
-
 const app=express()
 dotenv.config()
 app.use(bodyParser.json({extended:true,limit:'50mb'})) //calling middlewares |extended => bodparser will include any tpe of data not just strings/we can add ,limit:"30mb"

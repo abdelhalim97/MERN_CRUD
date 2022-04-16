@@ -18,6 +18,8 @@ export const Projects = () => {
   const pagesVisited=dataPerPage*pageNumber
   const pageCount = Math.ceil(dataSelector.length/dataPerPage)
   const changePage=({selected})=>setPageNumber(selected)
+  const user = JSON.parse(localStorage.getItem('profile')).result
+  const id = user.googleId ? user.googleId  :user._id
   return (
     <>
       <Border>
@@ -27,9 +29,10 @@ export const Projects = () => {
           <Grid item xs={12}>
             <Grid container  justifyContent="space-between">
               {data.length>0 &&
-              data?.slice(pagesVisited,pagesVisited+dataPerPage).map(d=>
-                <DisplayProject key={d._id} d={d}  />
-              )}
+              data?.slice(pagesVisited,pagesVisited+dataPerPage).map((project)=>
+                project.team.map((teamList)=>
+                  teamList === id &&<DisplayProject key={project._id} project={project}  />
+                ))}
             </Grid>
             {dataSelector.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
           </Grid>

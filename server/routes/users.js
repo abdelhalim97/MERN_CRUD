@@ -2,7 +2,6 @@ const express = require('express')
 var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const userModel = require('../models/userModel')
-var objectid = require('objectid')
 var router=express.Router()
 
 router.post('/gmail-signup',async(req,res)=>{
@@ -10,8 +9,7 @@ router.post('/gmail-signup',async(req,res)=>{
     try {
         const existingUser =  await userModel.findOne({email})
         if(existingUser) return res.status(200).json({message:'User google account exists'})
-        const result = await userModel.create({_id:googleId+'go',email,name,role:'USER'})
-        console.log(result)
+        const result = await userModel.create({id:googleId,email,name,role:'USER',imageUrl})
         res.status(200).json({message:'User google acount created'})
     } catch (error) {
         res.status(500).json({message:error})
@@ -19,7 +17,6 @@ router.post('/gmail-signup',async(req,res)=>{
 })
 router.post('/signup',async(req,res)=>{
     const {name,password,email,confirm_password}=req.body
-    var generateId = objectid()
     try {
         const existingUser =  await userModel.findOne({email})
         if(existingUser) return res.status(404).json({message:'user exists'})
@@ -27,7 +24,7 @@ router.post('/signup',async(req,res)=>{
         if(password.length<6) return res.status(400).json({message:'password has to be longer than 5'})
         if(confirm_password!==password) return res.status(400).json({message:'Password doesnt match'})
         const hashedPassword = await bcrypt.hash(password,12)
-        const result = await userModel.create({_id:generateId,email,password:hashedPassword,name,role:'ADMIN'})
+        const result = await userModel.create({email,password:hashedPassword,name,role:'ADMIN'})
         const token =jwt.sign({email:result.email,id:result._id},'test',{expiresIn:'1h'})
         res.status(200).json({result,token})
     } catch (error) {
