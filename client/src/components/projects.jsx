@@ -3,23 +3,22 @@ import { OurModal,DisplayProject } from './containers'
 import ReactPaginate from 'react-paginate'
 import { Border, TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Grid from '@mui/material/Grid';
 
 export const Projects = () => {
   const [pageNumber, setPageNumber] = useState(0)
   const data=useSelector((state)=>state.projects)
   const [dataSelector, setDataSelector] = useState(data)
-  const dispatch=useDispatch()
   useEffect(() => {
     setDataSelector(data)
-  }, [data,dispatch,dataSelector])
+  }, [data,dataSelector])
   const dataPerPage=12
   const pagesVisited=dataPerPage*pageNumber
   const pageCount = Math.ceil(dataSelector.length/dataPerPage)
   const changePage=({selected})=>setPageNumber(selected)
-  const user = JSON.parse(localStorage.getItem('profile')).result
-  const id = user.googleId ? user.googleId  :user._id
+  const user = JSON.parse(localStorage.getItem('profile'))?.result
+  const id = user?.googleId ? user?.googleId  :user?._id
   return (
     <>
       <Border>
@@ -30,7 +29,7 @@ export const Projects = () => {
             <Grid container  justifyContent="space-between">
               {data.length>0 &&
               data?.slice(pagesVisited,pagesVisited+dataPerPage).map((project)=>
-                project.team.map((teamList)=>
+                project?.team?.map((teamList)=>
                   teamList === id &&<DisplayProject key={project._id} project={project}  />
                 ))}
             </Grid>

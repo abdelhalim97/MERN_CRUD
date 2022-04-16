@@ -13,7 +13,6 @@ router.get('/',async (req,res)=>{//a controller
     }
 })
 router.post('/',auth,async(req,res)=>{
-    console.log(req.userId.toString())
     const projectData = req.body;
     const leader = req.userId.toString()
     const newProject = new projectModel({...projectData,leader,team:[leader],list:[[{}]]})

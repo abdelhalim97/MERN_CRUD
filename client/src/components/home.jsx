@@ -1,20 +1,21 @@
 import React,{useState,useEffect} from 'react'
 import img from '../assets/images/avatar.png'
-import { TypographyIcon } from './containers/units'
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { useSelector } from 'react-redux';
 
 export const Home = () => {
+  const data=useSelector((state)=>state.auth)
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('profile')))
-  }, [])
+  }, [data])
   const currentUser=user.result
   const currentUserGmail=currentUser.googleId
   const currentUserImg=currentUserGmail?currentUser.imageUrl:img
   const name=currentUserGmail?currentUser.givenName +' '+ currentUser.familyName :currentUser.name
+
   return (
     <>
       <div className='bg-base h-2/5'>

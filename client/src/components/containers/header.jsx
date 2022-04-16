@@ -1,6 +1,6 @@
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateProject } from '../../actions/projects'
 import { IconButton } from './units'
 import Button from '@mui/material/Button';
@@ -16,8 +16,11 @@ export const Header = ({project}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [state, setState] = useState(false)
-  const [addUser, setAddUser] = useState('Pick a User to Add')
+  const [addUser, setAddUser] = useState('')
   const [projecTtitle,setProjectTitle] = useState(project?.title)
+  const selector = useSelector(state =>state.users)
+  // const [users, setUsers] = useState([])
+  // console.log(selector)
   useEffect(() => {
     setProjectTitle(project?.title)
   }, [dispatch,project])
@@ -29,9 +32,12 @@ export const Header = ({project}) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => {
     setAnchorEl(null)
-    setAddUser('Pick a User to Add')
+    setAddUser('')
   }
   const handlePickUser = () =>{
+  const id = addUser.googleId ? addUser.googleId  :addUser._id
+  // const oldTeam
+    dispatch(updateProject(project?._id,{team:[id]}))
     // TODO: add the user from addUser state
     handleClose()
   }
@@ -47,14 +53,18 @@ export const Header = ({project}) => {
             <button type='submit'></button>
             </form>}
           <Typography variant='body1' className='text-sec font-bold'>{projecTtitle} Workspace</Typography>
-          {id === project.leader&&
+          {id === project?.leader&&
             <div>
               <IconButton fnc={handleClick} title='invite' icon={faUserPlus} styles='bg-sec text-third'/>
-              <Menu anchorEl={anchorEl} open={open} onClose={handleClose}
-              id="basic-menu" MenuListProps={{'aria-labelledby': 'basic-button'}}>
-              <MenuItem><TextField value={addUser} disabled/></MenuItem>
-                <MenuItem divider onClick={()=>setAddUser('Logout')} className=' text-center rounded-md'>Logout</MenuItem>
-                <div className='flex justify-center'> <Button variant='contained' className='bg-sec' onClick={handleClose}>add this user</Button></div>
+              <Menu anchorEl={anchorEl} open={open} onClose={handleClose} id="basic-menu" MenuListProps={{'aria-labelledby': 'basic-button'}}>
+                <MenuItem><TextField value={addUser.length===0?'Pick a User to Add':addUser.name} disabled/></MenuItem>
+                {selector.map(user=>
+                  project.team.map(userId=>
+                    user._id!==userId&&  user?.id!==userId &&<MenuItem key={user._id} divider onClick={()=>setAddUser(user)} className=' text-center rounded-md'>{user.email}</MenuItem>)
+                )}
+                <div className='flex justify-center mt-2'>
+                  <Button disabled={addUser.length===0?true:false} variant='contained' className='bg-sec' onClick={handlePickUser}>add this user</Button>
+                </div>
               </Menu>
             </div>
           }
