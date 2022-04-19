@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {deleteProject} from '../../actions/projects'
 export const DisplayProject = ({project}) => {
+  const defImg='https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const deleteAProject =()=>{
@@ -21,7 +22,7 @@ export const DisplayProject = ({project}) => {
             <div className='relative '>
                 <Typography variant='subtitle1' className='absolute text-third font-bold z-10'>&nbsp;{project.title}</Typography>
             <div className='bg-slate-900 h-full w-full absolute opacity-25 hover:opacity-50 rounded-lg'></div>
-            <img src={`${project.file64}`} className='w-40 h-40 object-cover rounded-lg' alt='project img'/>
+            <img src={`${project.file64||defImg}`} className='w-40 h-40 object-cover rounded-lg' alt='project img'/>
             </div>
           </button>
         </div>
