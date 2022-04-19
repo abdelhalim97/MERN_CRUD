@@ -36,9 +36,7 @@ export const Header = ({project}) => {
   }
   const handlePickUser = () =>{
   const id = addUser.googleId ? addUser.googleId  :addUser._id
-  // const oldTeam
-    dispatch(updateProject(project?._id,{team:[id]}))
-    // TODO: add the user from addUser state
+    dispatch(updateProject(project?._id,{newMember:[id]}))
     handleClose()
   }
   const user = JSON.parse(localStorage.getItem('profile')).result
@@ -58,10 +56,11 @@ export const Header = ({project}) => {
               <IconButton fnc={handleClick} title='invite' icon={faUserPlus} styles='bg-sec text-third'/>
               <Menu anchorEl={anchorEl} open={open} onClose={handleClose} id="basic-menu" MenuListProps={{'aria-labelledby': 'basic-button'}}>
                 <MenuItem><TextField value={addUser.length===0?'Pick a User to Add':addUser.name} disabled/></MenuItem>
-                {selector.map(user=>
-                  project.team.map(userId=>
-                    user._id!==userId&&  user?.id!==userId &&<MenuItem key={user._id} divider onClick={()=>setAddUser(user)} className=' text-center rounded-md'>{user.email}</MenuItem>)
-                )}
+                  {
+                  selector.map(user=>
+                  !project.team.includes(user._id) && !project.team.includes(user.id)&&
+                    <MenuItem key={user._id} divider onClick={()=>setAddUser(user)} className=' text-center rounded-md'>{user.email}</MenuItem>
+                    )}
                 <div className='flex justify-center mt-2'>
                   <Button disabled={addUser.length===0?true:false} variant='contained' className='bg-sec' onClick={handlePickUser}>add this user</Button>
                 </div>

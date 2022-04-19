@@ -1,16 +1,12 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import img from '../assets/images/avatar.png'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useSelector } from 'react-redux';
 
 export const Home = () => {
-  const data=useSelector((state)=>state.auth)
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('profile')))
-  }, [data])
+  const user = JSON.parse(localStorage.getItem('profile'))
+
   const currentUser=user.result
   const currentUserGmail=currentUser.googleId
   const currentUserImg=currentUserGmail?currentUser.imageUrl:img
