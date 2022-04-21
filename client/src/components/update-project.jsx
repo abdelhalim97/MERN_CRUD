@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { updateProject } from '../actions/projects'
 import { getUsers } from '../actions/users'
+import { AddChip } from './containers'
 import { Header } from './containers/header'
 import { Border, IconChip } from './containers/units'
 
@@ -25,18 +26,19 @@ export const UpdateProject = () => {
         <Header project={project}/>
         <div className='relative  p-2'>
           <img src={project?.file64|| defImg} className='w-full mx-auto object-cover max-w-full' alt='project img' />
-          <Container maxWidth='sm' className='absolute top-4'>
-            <Grid container>
-              <Grid item  sm={4} xs={6} flex>
-                {/* TODO:maping existing lsits */}
-                <IconChip text='Add another list' project={project}/>
-
+          <Container maxWidth='lg' className='absolute top-4 right-0'>
+            <Grid container spacing={2}>
+              {project?.list?.map(list=>
+                <Grid key={list.title} item md={3} sm={4} xs={6}>
+                  <IconChip project={project} listTitle={list.title} cards={list.cards}/>
+                </Grid>
+              )}
+              <Grid item md={3} sm={4} xs={6}>
+                <AddChip text='Add another list' project={project}/>
               </Grid>
             </Grid>
-            
           </Container>
         </div>
-        
       </Border>
     </>
   )

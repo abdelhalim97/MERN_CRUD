@@ -5,7 +5,7 @@ const projectSchema=mongoose.Schema({
     leader:String,
     team:[String],
     file64:String,
-    list:[[{}]],
+    list:Object,
 },{timestamps:true})
 const projectModel=mongoose.model('ProjectModel',projectSchema) //turning the schema to model|must be singular & uppercase
 //An instance of a model is called a document.
