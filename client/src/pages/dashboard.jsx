@@ -8,6 +8,8 @@ import { Home, Projects, AllProjects, Navbar, UpdateProject } from '../component
 import { ErrorPage } from '.'
 import { useDispatch, useSelector } from 'react-redux'
 import {getProjects} from '../actions/projects'
+import decode from 'jwt-decode'
+
 export const Dashboard = () => {
     const navigate = useNavigate()
     const dispatch=useDispatch()
@@ -51,7 +53,14 @@ export const Dashboard = () => {
             fnc:handleLogout
         },
     ]
-    
+    useEffect(() => {
+        const  token = first?.token
+        if(token){
+          const decodedToken = decode(token)
+          if(decodedToken.exp * 1000<new Date().getTime())
+            handleLogout()
+        }
+      }, [])
   return (
     <>
         <Grid container style={{ minHeight:'93.4vh' }}>
