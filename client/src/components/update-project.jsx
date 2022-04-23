@@ -2,7 +2,6 @@ import { Container, Grid } from '@mui/material'
 import React,{useEffect,useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getUsers } from '../actions/users'
 import { AddChip } from './containers'
 import { Header } from './containers/header'
 import { Border, IconChip } from './containers/units'
@@ -16,9 +15,7 @@ export const UpdateProject = () => {
   useEffect(() => {
     setProjectState(selector)
   }, [selector,dispatch])
-  useEffect(() => {
-    dispatch(getUsers())
-  }, [])
+  
   return (
     <>
       <Border>

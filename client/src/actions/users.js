@@ -7,3 +7,11 @@ export const getUsers=()=>async(dispatch)=>{
         console.log(error)
     }
 }
+export const deleteUser=(data)=>async(dispatch)=>{
+    try {
+        await api.deleteUser(data)
+        dispatch({type:'DELETE_USER',payload:data})
+    } catch (error) {
+        console.log(error)
+    }
+}

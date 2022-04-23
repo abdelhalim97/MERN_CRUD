@@ -7,16 +7,20 @@ import { useSelector } from 'react-redux'
 import Grid from '@mui/material/Grid';
 
 export const Projects = () => {
-  const [pageNumber, setPageNumber] = useState(0)
+  const [state, setstate] = useState({pageNumber:0,displayPagination:false})
   const data=useSelector((state)=>state.projects)
   const [dataSelector, setDataSelector] = useState(data)
   useEffect(() => {
     setDataSelector(data)
+    data?.map(project=>
+      project?.team?.map(teamList=>
+        teamList === id &&setstate({displayPagination:true,pageNumber:state.pageNumber})
+      ))
   }, [data,dataSelector])
   const dataPerPage=12
-  const pagesVisited=dataPerPage*pageNumber
+  const pagesVisited=dataPerPage*state.pageNumber
   const pageCount = Math.ceil(dataSelector.length/dataPerPage)
-  const changePage=({selected})=>setPageNumber(selected)
+  const changePage=({selected})=>setstate({displayPagination:true,pageNumber:selected})
   const user = JSON.parse(localStorage.getItem('profile'))?.result
   const id = user?.googleId ? user?.googleId  :user?._id
   return (
@@ -27,15 +31,14 @@ export const Projects = () => {
         </Grid>
           <Grid item xs={12}>
             <Grid container  justifyContent="space-between">
-              {data.length>0 &&
-              data?.slice(pagesVisited,pagesVisited+dataPerPage).map((project)=>
-                project?.team?.map((teamList)=>
+              {data?.slice(pagesVisited,pagesVisited+dataPerPage).map((project)=>
+                project?.team?.map(teamList=>
                   teamList === id &&<DisplayProject key={project._id} project={project}  />
                 ))}
             </Grid>
-            {dataSelector.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
+            {!state.displayPagination && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
           </Grid>
-        {dataSelector.length!==0&&<ReactPaginate previousLabel={'<'} nextLabel={'>'} pageCount={pageCount} onPageChange={changePage}
+        {state.displayPagination&&<ReactPaginate previousLabel={'<'} nextLabel={'>'} pageCount={pageCount} onPageChange={changePage}
           containerClassName={'bg-gray-100 flex mx-auto rounded-full px-4 py-1  justify-center items-center'}
           previousLinkClassName={'text-sec px-1'} nextLinkClassName={'text-sec px-1'}
           activeClassName={'bg-base rounded-full py-1'}

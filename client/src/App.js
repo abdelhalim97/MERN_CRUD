@@ -5,6 +5,7 @@ import {Login,ErrorPage,Dashboard} from "./pages"
 import { Footer } from "./components";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProjects } from './actions/projects';
+import { getUsers } from './actions/users';
 
 function App() {
   const selector = useSelector((state)=>state?.auth)
@@ -14,8 +15,10 @@ function App() {
   useEffect(() => {
     setfirstSelector(first)
     dispatch(getProjects())
+    dispatch(getUsers())
+
   }, [selector])
-  
+
   return (
       <BrowserRouter>
       {first&&<Dashboard/>}
