@@ -1,12 +1,12 @@
 import React from 'react'
-import { UsersTable } from './containers'
+import { ProjectsTable } from './containers'
 import { Border } from './containers/units'
 
-export const Users = () => {
+export const ProjectsDashboard = () => {
   return (
     <>
       <Border>
-        <UsersTable/>
+        <ProjectsTable/>
       </Border>
     </>
   )

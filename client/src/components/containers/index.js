@@ -6,6 +6,7 @@ import { FormForgotPass } from "./form-forgot-pass";
 import { Header } from "./header";
 import { AddChip } from './add-chip'
 import { UsersTable } from './users-table'
+import { ProjectsTable } from './projects-table'
 
 
-export{FormLogin,OurModal,DisplayProject,FormSignup,FormForgotPass,Header,AddChip,UsersTable }
+export{FormLogin,OurModal,DisplayProject,FormSignup,FormForgotPass,Header,AddChip,UsersTable,ProjectsTable }

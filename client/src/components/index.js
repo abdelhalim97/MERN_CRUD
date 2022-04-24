@@ -1,9 +1,10 @@
 import { Form } from "./form";
 import { Home } from "./home";
-import { Projects } from "./projects";
+import { ProjectsDashboard } from "./projects-dashboard";
 import { Footer } from "./footer";
-import  {Users}  from "./users";
+import  {UsersDashboard}  from "./users-dashboard";
 import  {Navbar}  from "./navbar";
 import  {UpdateProject}  from "./update-project";
+import  {Projects}  from "./projects";
 
-export {Form,Home,Projects,Footer,Users,Navbar,UpdateProject}
+export {Form,Home,ProjectsDashboard,Footer,UsersDashboard,Navbar,UpdateProject,Projects}

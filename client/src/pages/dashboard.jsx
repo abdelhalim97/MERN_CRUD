@@ -1,10 +1,10 @@
 import React, { useEffect,useState } from 'react'
 import Grid from '@mui/material/Grid';
 import { LinkIconButton } from '../components/containers/units'
-import { faFutbol,faRightFromBracket,faUserAlt } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard,faRightFromBracket,faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route, useNavigate } from "react-router-dom";
-import { Home, Projects, Users, Navbar, UpdateProject } from '../components';
+import { Home, Projects, UsersDashboard, Navbar, UpdateProject,ProjectsDashboard } from '../components';
 import { ErrorPage } from '.'
 import { useDispatch, useSelector } from 'react-redux'
 import {getProjects} from '../actions/projects'
@@ -37,10 +37,16 @@ export const Dashboard = () => {
             id:1,
             title:'Users',
             icon:faUserAlt,
-            link:'./users',
+            link:'./users-dashboard',
         },
         {
             id:2,
+            title:'Project',
+            icon:faAddressCard,
+            link:'./projects-dashboard',
+        },
+        {
+            id:3,
             title:'Logout',
             icon:faRightFromBracket,
             link:'./',
@@ -69,7 +75,8 @@ export const Dashboard = () => {
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
                     {first&&<Route path="/projects" element={<Projects/>}></Route>}
-                    {first&&<Route path="/users" element={<Users/>}></Route>}
+                    {first&&<Route path="/users-dashboard" element={<UsersDashboard/>}></Route>}
+                    {first&&<Route path="/projects-dashboard" element={<ProjectsDashboard/>}></Route>}
                     {first&&<Route path="/projects/:id" element={<UpdateProject/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>
                 </Routes>

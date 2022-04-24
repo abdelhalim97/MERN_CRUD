@@ -25,7 +25,6 @@ router.post('/signup',async(req,res)=>{
         if(confirm_password!==password) return res.status(400).json({message:'Password doesnt match'})
         const hashedPassword = await bcrypt.hash(password,12)
         const result = await userModel.create({email,password:hashedPassword,name,role:'ADMIN'})
-        console.log(result)
         const token =jwt.sign({email:result.email,id:result._id},process.env.PRIVATE_KEY,{expiresIn:'2h'})
         res.status(200).json({result,token})
     } catch (error) {
@@ -53,7 +52,7 @@ router.get('/fetch-all',async(req,res)=>{
         res.status(500).json({message:error})
     }
 })
-router.delete('/:id',async(req,res)=>{
+router.delete('/:id',async(req,res)=>{//only admin
     const {id} = req.params
     try {
         const existingUser = await userModel.findOne({_id:id})

@@ -25,8 +25,7 @@ router.post('/',auth,async(req,res)=>{
 })
 router.patch('/:id',auth,async(req,res)=>{
     const {id}=req.params
-    const {title,newMember,newList,newCard,thisList} = req.body;
-
+    const {title,newMember,newList,newCard,thisList,newLeader,projectId} = req.body;
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')
     if(title){
         const updateProject = await projectModel.findByIdAndUpdate(id,{title},{new:true})//new:true to recieve the updated version
@@ -54,6 +53,18 @@ router.patch('/:id',auth,async(req,res)=>{
         curList.cards.push(newCard)
         const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
         res.json(updateProject)
+    }
+    if(newLeader && projectId){
+        const existingProject = await projectModel.findOne({_id:projectId})
+        console.log(existingProject.leader)
+
+        if(existingProject) return res.status(404).send('Project doenst exist')
+
+        // const list= existingProject.list
+        // var curList = list.find(obj=>obj.title===thisList)
+        // curList.cards.push(newCard)
+        // const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
+        // res.json(updateProject)
     }
 })
 router.delete('/:id',auth,async(req,res)=>{
