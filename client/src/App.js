@@ -16,7 +16,6 @@ function App() {
     setfirstSelector(first)
     dispatch(getProjects())
     dispatch(getUsers())
-
   }, [selector])
 
   return (

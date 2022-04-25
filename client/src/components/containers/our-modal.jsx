@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { IconButton } from './units';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
@@ -28,9 +28,10 @@ export const OurModal = () => {
     boxShadow: 24,
     p: 4,
   };
+  const user = JSON.parse(localStorage.getItem('profile')).result
   const addProject=(e)=>{
     e.preventDefault()
-    dispatch(createProject({...form,userId:'f'}))
+    dispatch(createProject({...form,userId:user._id}))
     setOpen(false)
   }
 //   const useStyles = makeStyles({

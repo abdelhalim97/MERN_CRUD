@@ -14,7 +14,7 @@ export const ProjectsTable = () => {
     useEffect(() => {
         setUsers(selectorUsers)
     }, [selectorUsers])
-    const handleLeader = (projectleader) => users.map(user=>user._id===projectleader?user.name:null)
+    const handleLeader = (projectleader) => users.map(user=>user._id===projectleader && user.name)
   return (
     <>
         <TableContainer>
@@ -31,10 +31,10 @@ export const ProjectsTable = () => {
                     {projects?.map(project=>
                     <TableRow key={project._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell component="th"  scope="row">{project.title}</TableCell>
-                        <TableCell align="center" value='ff'>
-                            {handleLeader(project.leader)[1]===null?
-                            <span className='text-red-500 font-bold'>This project has no leader</span>
-                            :handleLeader(project.leader)}
+                        <TableCell align="center">
+                            {handleLeader(project.leader)?
+                            handleLeader(project.leader)
+                            :<span className='text-red-500 font-bold'>This project has no leader</span>}
                         </TableCell>
                         <TableCell align="center"><img src={project.file64} className='w-20 h-20 object-cover mx-auto' alt='project image'/></TableCell>
                         <TableCell align="right" className='w-1/4'>

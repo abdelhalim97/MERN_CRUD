@@ -14,15 +14,14 @@ router.get('/',async (req,res)=>{//a controller
 })
 router.post('/',auth,async(req,res)=>{
     const projectData = req.body;
-    const leader = req.userId.toString()
-    console.log(projectData)
-    // const newProject = new projectModel({...projectData,leader,team:[leader],list:[]})
-    // try {
-    //     await  newProject.save()
-    //     res.status(201).json(newProject)
-    // } catch (error) {
-    //     res.status(409).json({message:error})
-    // }
+    const leader = req.body.userId
+    const newProject = new projectModel({...projectData,leader,team:[leader],list:[]})
+    try {
+        await  newProject.save()
+        res.status(201).json(newProject)
+    } catch (error) {
+        res.status(409).json({message:error})
+    }
 })
 router.patch('/:id',auth,async(req,res)=>{
     const {id}=req.params
@@ -57,7 +56,7 @@ router.patch('/:id',auth,async(req,res)=>{
     }
     if(newLeader && projectId){
         const existingProject = await projectModel.findOne({_id:projectId})
-        console.log(existingProject.leader)
+        // console.log(existingProject.leader)
 
         if(existingProject) return res.status(404).send('Project doenst exist')
 
