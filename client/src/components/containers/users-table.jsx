@@ -33,7 +33,7 @@ export const UsersTable = () => {
                         <TableCell align="center">{user.role}</TableCell>
                         <TableCell align="right">{user.id?'Gmail':'Normal account'}</TableCell>
                         <TableCell align="right">
-                            <FontAwesomeIcon className='text-sec cursor-pointer' icon={faTrash} onClick={()=>dispatch(deleteUser(user))} />    
+                            {user.role!=='ADMIN'&&<FontAwesomeIcon className='text-sec cursor-pointer' icon={faTrash} onClick={()=>dispatch(deleteUser(user))} />}    
                         </TableCell>
                     </TableRow>)}
                 </TableBody>

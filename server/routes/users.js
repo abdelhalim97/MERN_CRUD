@@ -2,15 +2,18 @@ const express = require('express')
 var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const userModel = require('../models/userModel')
+const projectModel = require('../models/projectModel')
+
 var router=express.Router()
 
 router.post('/gmail-signup',async(req,res)=>{
-    const {email,name,imageUrl,googleId}=req.body.result
+    const {email,name,imageUrl,googleId}=req.body
+    console.log(req.body)
     try {
         const existingUser =  await userModel.findOne({email})
-        if(existingUser) return res.status(200).json({message:'User google account exists'})
+        if(existingUser) return res.status(200).json(existingUser)
         const result = await userModel.create({id:googleId,email,name,role:'USER',imageUrl})
-        res.status(200).json({message:'User google acount created'})
+        res.status(200).json(result)
     } catch (error) {
         res.status(500).json({message:error})
     }
@@ -54,11 +57,14 @@ router.get('/fetch-all',async(req,res)=>{
 })
 router.delete('/:id',async(req,res)=>{//only admin
     const {id} = req.params
+    console.log(id)
     try {
         const existingUser = await userModel.findOne({_id:id})
         if(!existingUser) return res.status(404).send({message:'User doesnt exist'})
-        await userModel.findByIdAndRemove(id)
-        res.json({message:'User Deleted'})
+        const project = projectModel.find({leader:id})
+        // console.log(project.leader)
+        // await userModel.findByIdAndRemove(id)
+        // res.json({message:'User Deleted'}    )
     } catch (error) {
         res.status(500).json({message:error})
     }

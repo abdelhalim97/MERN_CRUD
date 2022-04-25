@@ -35,8 +35,7 @@ export const Header = ({project}) => {
     setAddUser('')
   }
   const handlePickUser = () =>{
-  const id = addUser.googleId ? addUser.googleId  :addUser._id
-    dispatch(updateProject(project?._id,{newMember:[id]}))
+    dispatch(updateProject(project?._id,{newMember:[addUser._id]}))
     handleClose()
   }
   const user = JSON.parse(localStorage.getItem('profile')).result

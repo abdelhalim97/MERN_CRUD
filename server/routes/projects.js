@@ -15,13 +15,14 @@ router.get('/',async (req,res)=>{//a controller
 router.post('/',auth,async(req,res)=>{
     const projectData = req.body;
     const leader = req.userId.toString()
-    const newProject = new projectModel({...projectData,leader,team:[leader],list:[]})
-    try {
-        await  newProject.save()
-        res.status(201).json(newProject)
-    } catch (error) {
-        res.status(409).json({message:error})
-    }
+    console.log(projectData)
+    // const newProject = new projectModel({...projectData,leader,team:[leader],list:[]})
+    // try {
+    //     await  newProject.save()
+    //     res.status(201).json(newProject)
+    // } catch (error) {
+    //     res.status(409).json({message:error})
+    // }
 })
 router.patch('/:id',auth,async(req,res)=>{
     const {id}=req.params

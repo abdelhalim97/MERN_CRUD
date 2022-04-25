@@ -30,7 +30,7 @@ export const OurModal = () => {
   };
   const addProject=(e)=>{
     e.preventDefault()
-    dispatch(createProject(form))
+    dispatch(createProject({...form,userId:'f'}))
     setOpen(false)
   }
 //   const useStyles = makeStyles({
