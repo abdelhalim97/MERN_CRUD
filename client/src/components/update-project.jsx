@@ -20,10 +20,10 @@ export const UpdateProject = () => {
     <>
       <Border>
         <Header project={project}/>
-        <div className='relative  p-2'>
-          <img src={project?.file64|| defImg} className='w-full mx-auto object-cover max-w-full' alt='project img' />
-          <Container maxWidth='lg' className='absolute top-4 right-0'>
-            <Grid container spacing={2}>
+        <div className='relative p-2 w-full'>  {/**/}
+          <img src={project?.file64|| defImg} className='object-cover max-w-full' alt='project img' />
+          <Container maxWidth='lg' className='absolute top-4 right-0 overflow-y-scroll h-full scroll-smooth pb-10'>
+            <Grid container spacing={2} >
               {project?.list?.map(list=>
                 <Grid key={list.title} item md={3} sm={4} xs={6}>
                   <IconChip project={project} listTitle={list.title} cards={list.cards}/>

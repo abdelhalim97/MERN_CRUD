@@ -3,6 +3,7 @@ var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const userModel = require('../models/userModel')
 const projectModel = require('../models/projectModel')
+var auth = require('../middleware/auth')
 
 var router=express.Router()
 
@@ -46,7 +47,7 @@ router.post('/signin',async(req,res)=>{
         res.status(500).json({message:error})
     }
 })
-router.get('/fetch-all',async(req,res)=>{
+router.get('/fetch-all',auth,async(req,res)=>{
     try {
         const users = await userModel.find()
         res.status(200).json(users)

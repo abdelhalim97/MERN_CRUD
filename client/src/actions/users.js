@@ -7,6 +7,14 @@ export const getUsers=()=>async(dispatch)=>{
         console.log(error)
     }
 }
+// export const addUser=(formData)=>async(dispatch)=>{
+//     try {
+//         // const {data} = await api.signUp(formData)
+//         dispatch({type:'ADD_USER',formData})
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 export const deleteUser=(data)=>async(dispatch)=>{
     try {
         await api.deleteUser(data,data)

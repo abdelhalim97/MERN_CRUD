@@ -54,7 +54,7 @@ router.patch('/:id',auth,async(req,res)=>{
         const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
         res.json(updateProject)
     }
-    if(projectId && newLeader){ 
+    if(projectId && newLeader){//only admin
         const existingProject = await projectModel.findOne({_id:projectId})
         if(!existingProject) return res.status(404).send('Project doenst exist')
         var updateProject =await projectModel.findByIdAndUpdate(projectId,{leader:newLeader},{new:true})
