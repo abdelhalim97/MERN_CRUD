@@ -25,7 +25,7 @@ export const SelectLeader = ({project}) => {
             value={newLeader}
             label="New leader"
             onChange={(e)=>setNewLeader(e.target.value)}>
-              {users.map(user=> <MenuItem key={user._id} value={user.email}>{user.email}</MenuItem>)}
+              {users.map(user=> <MenuItem key={user._id} value={user._id}>{user.email}</MenuItem>)}
             </Select>
           </FormControl>
         </Grid>

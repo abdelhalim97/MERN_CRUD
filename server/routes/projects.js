@@ -54,17 +54,17 @@ router.patch('/:id',auth,async(req,res)=>{
         const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
         res.json(updateProject)
     }
-    if(newLeader && projectId){
+    if(projectId && newLeader){ 
         const existingProject = await projectModel.findOne({_id:projectId})
-        // console.log(existingProject.leader)
-
-        if(existingProject) return res.status(404).send('Project doenst exist')
-
-        // const list= existingProject.list
-        // var curList = list.find(obj=>obj.title===thisList)
-        // curList.cards.push(newCard)
-        // const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
-        // res.json(updateProject)
+        if(!existingProject) return res.status(404).send('Project doenst exist')
+        var updateProject =await projectModel.findByIdAndUpdate(projectId,{leader:newLeader},{new:true})
+        const newLeaderExistsInTeam = existingProject.team.includes(newLeader)
+        if(!newLeaderExistsInTeam) {
+            const team = existingProject.team
+            team.push(newLeader)
+            updateProject = await projectModel.findByIdAndUpdate(projectId,{leader:newLeader,team},{new:true})
+        }
+        res.json(updateProject)
     }
 })
 router.delete('/:id',auth,async(req,res)=>{
