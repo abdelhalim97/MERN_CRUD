@@ -23,6 +23,14 @@ export const getProjects=()=>async(dispatch)=>{
         console.log(error);
       }
     };
+    export const changeLeaderProject = (id, project) => async (dispatch) => {
+      try {
+        const { data } = await api.changeLeader(id, project)
+        dispatch({ type: 'UPDATE', payload: data })
+      } catch (error) {
+        console.log(error);
+      }
+    };
     export const deleteProject=(data)=>async(dispatch)=>{
       try {
         await api.deleteProject(data)

@@ -3,7 +3,9 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
 var projectsRouters = require('./routes/projects')
-const usersRouters = require('./routes/users')
+var authRouters = require('./routes/auth')
+var usersRouters = require('./routes/users')
+
 const dotenv = require('dotenv')
 
 const app=express()
@@ -12,6 +14,7 @@ app.use(bodyParser.json({extended:true,limit:'50mb'})) //calling middlewares |ex
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use('/',projectsRouters)
+app.use('/auth',authRouters)
 app.use('/users',usersRouters)
 
 const CONNECTION__URL=process.env.CONNECTION__URL

@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const projectModel = require('../models/projectModel')
 var auth = require('../middleware/auth')
+var admin = require('../middleware/admin')
 
 var router=express.Router()
 router.get('/',async (req,res)=>{//a controller
@@ -54,7 +55,12 @@ router.patch('/:id',auth,async(req,res)=>{
         const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
         res.json(updateProject)
     }
-    if(projectId && newLeader){//only admin
+})
+router.patch('/change-leader/:id',auth,admin,async(req,res)=>{
+    const {id}=req.params
+    const { newLeader,projectId } = req.body;
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')
+    if(projectId && newLeader){
         const existingProject = await projectModel.findOne({_id:projectId})
         if(!existingProject) return res.status(404).send('Project doenst exist')
         var updateProject =await projectModel.findByIdAndUpdate(projectId,{leader:newLeader},{new:true})
@@ -67,7 +73,8 @@ router.patch('/:id',auth,async(req,res)=>{
         res.json(updateProject)
     }
 })
-router.delete('/:id',auth,async(req,res)=>{
+
+router.delete('/:id',auth,admin,async(req,res)=>{
     const {id}=req.params
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')
     await projectModel.findByIdAndRemove(id)

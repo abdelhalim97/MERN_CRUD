@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
-import { updateProject } from '../../../actions/projects'
+import { changeLeaderProject } from '../../../actions/projects'
 
 export const SelectLeader = ({project}) => {
   const [newLeader, setNewLeader] = useState('')
@@ -31,7 +31,7 @@ export const SelectLeader = ({project}) => {
         </Grid>
         <Grid item xs={4}>
         {newLeader.length>0&&<FontAwesomeIcon className='text-green-600 cursor-pointer ' icon={faUserEdit} 
-          onClick={()=>dispatch(updateProject(project._id,{newLeader,projectId:project._id}))} />  } 
+          onClick={()=>dispatch(changeLeaderProject(project._id,{newLeader,projectId:project._id}))} />  } 
         </Grid>
       </Grid>
     </>
