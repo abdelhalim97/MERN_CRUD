@@ -73,7 +73,6 @@ router.patch('/change-leader/:id',auth,admin,async(req,res)=>{
         res.json(updateProject)
     }
 })
-
 router.delete('/:id',auth,admin,async(req,res)=>{
     const {id}=req.params
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')

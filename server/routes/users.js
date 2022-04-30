@@ -5,8 +5,15 @@ var auth = require('../middleware/auth')
 var admin = require('../middleware/admin')
 
 var router=express.Router()
-
-router.delete('/:id',admin,async(req,res)=>{//only admin
+router.get('/fetch-all',async(req,res)=>{
+    try {
+        const users = await userModel.find()
+        res.status(200).json(users)
+    } catch (error) {
+        res.status(500).json({message:error})
+    }
+})
+router.delete('/:id',auth,admin,async(req,res)=>{//only admin
     const {id} = req.params
     try {
         const existingUser = await userModel.findOne({_id:id})

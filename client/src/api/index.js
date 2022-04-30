@@ -16,5 +16,6 @@ export const deleteProject=(data)=> axios.delete(`${url}${data._id}`)
 export const signIn = (formData)=>API.post('auth/signin',formData)
 export const googleSignUp = (data)=>API.post('auth/gmail-signup',data)
 export const signUp = (formData)=>axios.post(signUpUrl,formData)
-export const fetchUsers = ()=>API.get('auth/fetch-all')
-export const deleteUser = (user)=>API.delete(`users/${user._id}`)
+export const fetchUsers = ()=>API.get('users/fetch-all')
+export const deleteUser = (user)=>axios.delete(`${url}users/${user._id}`)
+
