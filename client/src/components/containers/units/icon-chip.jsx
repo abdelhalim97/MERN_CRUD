@@ -1,4 +1,4 @@
-import { faPlus, faX } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSquareMinus, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, Input } from '@mui/material'
 import React,{useState} from 'react'
@@ -11,9 +11,20 @@ export const IconChip = (props) => {
   return (
     <>
     <div className='bg-sec'>
-        <div className='text-sm sm:text-md w-full text-center font-bold'>{props.listTitle}</div>
+        <div className='flex align-middle'>
+            <div className='text-sm sm:text-md w-full text-center font-bold'>{props.listTitle}</div>
+            <div className='mr-1 '>
+                <FontAwesomeIcon icon={faSquareMinus} onClick={()=>dispatch(updateProject(props.project?._id,{deleteList:props.listTitle}))} className='text-red-600 cursor-pointer hover:text-red-700'/>
+            </div>
+        </div>
         {props.cards.map(card=>
-            <div key={card} className='bg-third rounded-sm m-1 p-1'>{card}</div>)}
+            <div key={card} className='bg-third rounded-sm m-1 p-1 flex justify-between'>
+                <div>{card}</div>
+                <div>
+                    <FontAwesomeIcon icon={faSquareMinus} onClick={()=>dispatch(updateProject(props.project?._id,{deleteCard:card,thisList:props.listTitle}))} className='text-red-600 cursor-pointer  hover:text-red-700 '/>
+                </div>
+            </div>
+        )}
         <Button className='bg-sec rounded-sm text-slate-900 w-full' onClick={()=>!state.bool&&setState({bool:true})}>
             {state.bool ?
                 <div>

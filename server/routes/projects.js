@@ -26,14 +26,14 @@ router.post('/',auth,async(req,res)=>{
 })
 router.patch('/:id',auth,async(req,res)=>{
     const {id}=req.params
-    const {title,newMember,newList,newCard,thisList,newLeader,projectId} = req.body;
+    const {title,newMember,newList,newCard,thisList,deleteList,deleteCard} = req.body;
+    const existingProject = await projectModel.findOne({_id:id})
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no project with that id')
     if(title){
         const updateProject = await projectModel.findByIdAndUpdate(id,{title},{new:true})//new:true to recieve the updated version
         res.json(updateProject)
     }
     if(newMember){
-        const existingProject = await projectModel.findOne({_id:id})
         const [newMemberDest] = newMember
         const team= existingProject.team
         team.push(newMemberDest)
@@ -41,18 +41,29 @@ router.patch('/:id',auth,async(req,res)=>{
         res.json(updateProject)
     }
     if(newList){
-        const existingProject = await projectModel.findOne({_id:id})
         const list= existingProject.list
         list.push({title:newList,cards:[]})
         const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
         res.json(updateProject)
     }
     if(newCard){
-        const existingProject = await projectModel.findOne({_id:id})
         const list= existingProject.list
         var curList = list.find(obj=>obj.title===thisList)
         curList.cards.push(newCard)
         const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
+        res.json(updateProject)
+    }
+    if(deleteList){
+        const list = existingProject.list.filter(data=>(data.title!==deleteList))
+        const updateProject = await projectModel.findByIdAndUpdate(id,{list},{new:true})//new:true to recieve the updated version
+        res.json(updateProject)
+    }
+    if(deleteCard && thisList){
+        const [listToFilter] = existingProject.list.filter(data=>data.title===thisList)
+        const newCardList = listToFilter.cards.filter(card=>card!==deleteCard)
+        const oldList = existingProject.list
+        oldList.map(data=>data.title===thisList && (data.cards=newCardList))
+        const updateProject = await projectModel.findByIdAndUpdate(id,{list:oldList},{new:true})//new:true to recieve the updated version
         res.json(updateProject)
     }
 })
