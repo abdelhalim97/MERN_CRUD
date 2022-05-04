@@ -29,13 +29,13 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
     },
   ]
   const dataButtons2 =[
-    {
-      id:1,
-      title:"Forgot Password?",
-      fnc:handleSetFormtoForgotPasword,
-      styles:'my-3 text-base text-xs',
-      variant:'text'
-    },
+    // {
+    //   id:1,
+    //   title:"Forgot Password?",
+    //   fnc:handleSetFormtoForgotPasword,
+    //   styles:'my-3 text-base text-xs',
+    //   variant:'text'
+    // },
     {
       id:2,
       title:"Login",

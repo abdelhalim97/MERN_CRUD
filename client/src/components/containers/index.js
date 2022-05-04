@@ -7,6 +7,6 @@ import { Header } from "./header";
 import { AddChip } from './add-chip'
 import { UsersTable } from './users-table'
 import { ProjectsTable } from './projects-table'
+import { PaperCards } from './paper-cards'
 
-
-export{FormLogin,OurModal,DisplayProject,FormSignup,FormForgotPass,Header,AddChip,UsersTable,ProjectsTable }
+export{FormLogin,OurModal,DisplayProject,FormSignup,FormForgotPass,Header,AddChip,UsersTable,ProjectsTable,PaperCards }

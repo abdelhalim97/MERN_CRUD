@@ -39,10 +39,10 @@ export const Form = () => {
             {form === 'signUp'&&
               <FormSignup formData={formData} setFormData={setFormData} setForm={setForm}/>
             }
-            {form === 'forgotPassword'&&
+            {/* {form === 'forgotPassword'&&
               <FormForgotPass setForgetPassStat={setForgetPassStat} forgetPass={forgetPass} setForgetPass={setForgetPass}
               forgetPassStat={forgetPassStat} setForm={setForm} />
-            }
+            } */}
           </Container>
         </div>
       </>

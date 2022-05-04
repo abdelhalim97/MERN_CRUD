@@ -5,5 +5,6 @@ import {IconButtonNormal} from './icon-button-nrml'
 import {Border} from './border'
 import { IconChip } from './icon-chip'
 import { SelectLeader } from './select-leader'
+import { PaperCard } from './paper-card'
 
-export{LinkIconButton,TypographyIcon,IconButton,IconButtonNormal,Border,IconChip,SelectLeader}
+export{LinkIconButton,TypographyIcon,IconButton,IconButtonNormal,Border,IconChip,SelectLeader,PaperCard}
