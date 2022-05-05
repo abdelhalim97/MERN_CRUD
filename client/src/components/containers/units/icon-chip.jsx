@@ -14,14 +14,14 @@ export const IconChip = (props) => {
         <div className='flex align-middle'>
             <div className='text-sm sm:text-md w-full text-center font-bold'>{props.listTitle}</div>
             <div className='mr-1 '>
-                <FontAwesomeIcon icon={faSquareMinus} onClick={()=>dispatch(updateProject(props.project?._id,{deleteList:props.listTitle}))} className='text-red-600 cursor-pointer hover:text-red-700'/>
+                <FontAwesomeIcon icon={faSquareMinus} onClick={()=>dispatch(updateProject(props.project?._id,{deleteList:props.listTitle}))} className='text-third cursor-pointer hover:text-slate-200'/>
             </div>
         </div>
         {props.cards.map(card=>
-            <div key={card} className='bg-third rounded-sm m-1 p-1 flex justify-between'>
+            <div key={card} className='bg-neutral-300 rounded-sm m-1 p-1 flex justify-between'>
                 <div>{card}</div>
                 <div>
-                    <FontAwesomeIcon icon={faSquareMinus} onClick={()=>dispatch(updateProject(props.project?._id,{deleteCard:card,thisList:props.listTitle}))} className='text-red-600 cursor-pointer  hover:text-red-700 '/>
+                    <FontAwesomeIcon icon={faSquareMinus} className='text-third cursor-pointer hover:text-slate-200' onClick={()=>dispatch(updateProject(props.project?._id,{deleteCard:card,thisList:props.listTitle}))}/>
                 </div>
             </div>
         )}

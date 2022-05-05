@@ -25,10 +25,7 @@ router.post('/signup',async(req,res)=>{
         if(password.length<6) return res.status(400).json({message:'password has to be longer than 5'})
         if(confirm_password!==password) return res.status(400).json({message:'Passwords dont match'})
         const hashedPassword = await bcrypt.hash(password,12)
-        console.log(userModel.create({email,password:hashedPassword,name,role:'ADMIN'}))
-
         const result = await userModel.create({email,password:hashedPassword,name,role:'ADMIN'})
-
         const token =jwt.sign({email:result.email,role:result.role,id:result._id},process.env.PRIVATE_KEY,{expiresIn:'2h'})
         res.status(200).json({result,token})
     } catch (error) {
