@@ -1,6 +1,8 @@
 import axios from 'axios'
-const url = 'https://mern-project-management.herokuapp.com/'
-const signUpUrl = 'https://mern-project-management.herokuapp.com/auth/signup'
+const url = 'http://localhost:5000/'
+const signUpUrl = `${url}auth/signup`
+// http://localhost:5000/
+// https://mern-project-management.herokuapp.com/
 const API =  axios.create({baseURL:`${url}`})
 axios.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){

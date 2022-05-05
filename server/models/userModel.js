@@ -5,7 +5,8 @@ const userSchema=mongoose.Schema({
     email:{type:String,required:true,trim:true,unique:true},
     password:{type:String},
     role:String,
-    id:{type:String,unique:true,default:''}
+    imageUrl:{type:String,required:false,default:''} ,
+    // id:{type:String,unique:true,default:''}
 },{timestamps:true})
 const userModel=mongoose.model('UserModel',userSchema)
 module.exports = userModel

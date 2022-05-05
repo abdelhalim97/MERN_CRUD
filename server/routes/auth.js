@@ -2,9 +2,6 @@ const express = require('express')
 var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const userModel = require('../models/userModel')
-const projectModel = require('../models/projectModel')
-var auth = require('../middleware/auth')
-var admin = require('../middleware/admin')
 
 var router=express.Router()
 
@@ -26,9 +23,12 @@ router.post('/signup',async(req,res)=>{
         if(existingUser) return res.status(404).json({message:'user exists'})
         if(password.trim().length===0) return res.status(400).json({message:'password is required'})
         if(password.length<6) return res.status(400).json({message:'password has to be longer than 5'})
-        if(confirm_password!==password) return res.status(400).json({message:'Password doesnt match'})
+        if(confirm_password!==password) return res.status(400).json({message:'Passwords dont match'})
         const hashedPassword = await bcrypt.hash(password,12)
+        console.log(userModel.create({email,password:hashedPassword,name,role:'ADMIN'}))
+
         const result = await userModel.create({email,password:hashedPassword,name,role:'ADMIN'})
+
         const token =jwt.sign({email:result.email,role:result.role,id:result._id},process.env.PRIVATE_KEY,{expiresIn:'2h'})
         res.status(200).json({result,token})
     } catch (error) {

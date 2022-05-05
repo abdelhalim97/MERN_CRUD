@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{} from 'react'
 import img from '../assets/images/avatar.png'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -7,9 +7,8 @@ import { PaperCards } from './containers/paper-cards';
 
 export const Home = () => {
   const currentUser = JSON.parse(localStorage.getItem('profile')).result
-  const currentUserGmail=currentUser.googleId
+  const currentUserGmail=currentUser.imageUrl
   const currentUserImg=currentUserGmail?currentUser.imageUrl:img
-
   return (
     <>
       <div className='bg-base h-4/5'>
