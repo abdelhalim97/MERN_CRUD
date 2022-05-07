@@ -1,15 +1,9 @@
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect, useState } from 'react'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProject } from '../../actions/projects'
 import { IconButton } from './units'
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import {Button, Container,Grid,Menu,MenuItem,TextField,Typography} from '@mui/material';
 
 export const Header = ({project}) => {
   const dispatch=useDispatch()

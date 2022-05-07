@@ -1,9 +1,4 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import React from 'react'
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip';
+import {Button,TextField,Typography,React,Divider,Chip} from '@mui/material';
 import {GoogleLogin} from 'react-google-login'
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../actions/auth';
@@ -50,8 +45,6 @@ const responseS= async (res)=>{
   const token = res?.tokenId
   try {
     dispatch({type:'AUTH',data:{result,token}})
-    // console.log(result)
-
     const gsignup=await googleSignUp(result)
     await localStorage.setItem('profile',JSON.stringify({result:gsignup.data,token}))
   } catch (error) {

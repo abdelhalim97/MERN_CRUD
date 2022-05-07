@@ -1,5 +1,4 @@
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import { Grid,Typography } from '@mui/material';
 import { IconButtonNormal } from './units'
 import {faTrash} from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'

@@ -1,5 +1,5 @@
 import axios from 'axios'
-const url = 'http://localhost:5000/'
+const url = 'https://mern-project-management.herokuapp.com/'
 const signUpUrl = `${url}auth/signup`
 // http://localhost:5000/
 // https://mern-project-management.herokuapp.com/

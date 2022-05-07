@@ -1,7 +1,7 @@
+import React,{useState,useEffect} from 'react'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import React,{useState,useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteUser } from '../../actions/users'
 

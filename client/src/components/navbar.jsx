@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
 import { faTrello } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux'
@@ -11,7 +11,6 @@ export const Navbar = () => {
     const navigation = [
         { title: "Profile", path: "/" },
         { title: "Projects", path: "/projects" },
-        { title: "My Projects", path: "/my-projects" },
     ]
     const dispatch=useDispatch()
     const handleLogout=()=>{

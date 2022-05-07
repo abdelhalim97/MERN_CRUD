@@ -1,7 +1,7 @@
+import React,{useState} from 'react'
 import { faPlus, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, Input } from '@mui/material'
-import React,{useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { updateProject } from '../../actions/projects'
 

@@ -5,11 +5,7 @@ import { useDispatch } from 'react-redux';
 import { createProject } from '../../actions/projects';
 import FileBase64 from 'react-file-base64';
 // import {makeStyles} from "@material-ui/core/styles"
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import {Box,Button,Modal,TextField,Typography }from '@mui/material';
 
 export const OurModal = () => {
   const [open, setOpen] = useState(false);
@@ -65,7 +61,7 @@ export const OurModal = () => {
         aria-describedby="modal-modal-description">
         <Box sx={style} className='border-2 border-sec rounded-3xl bg-third w-5/6 sm:w-2/3 md:w-1/2'>
           <Typography id="modal-modal-title" variant="h6" component="h2" className='text-center bg-base text-third rounded-3xl p-1 mb-3'>
-            Add a new Stadium
+            Add a new Project
           </Typography>
           <form onSubmit={addProject} >
             {fildsData.map(data=>
