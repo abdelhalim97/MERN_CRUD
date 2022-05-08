@@ -16,7 +16,7 @@ export const Footer = () => {
                     <FontAwesomeIcon icon={faTwitter} className="bg-base text-third hover:bg-third hover:text-base text-xl rounded-full px-1"/>
                 </a>
             </div>
-            <div className="text-third text-md text-center font-bold">Made by Abdelhalim Ben Oun & Farouk Amara</div>
+            <div className="text-third text-md text-center font-bold">Made by Abdelhalim Ben Oun</div>
             <a href="/"><img className="w-14 mr-4" resize="cover" alt='polytechniqueLogo' src="https://www.polytecsousse.tn/wp-content/uploads/2020/09/logo-polytechnique-blanc.png"/></a>
         </div>
     </>
