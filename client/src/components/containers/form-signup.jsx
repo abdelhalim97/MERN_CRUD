@@ -1,10 +1,15 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {Typography,TextField,Button} from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../actions/auth';
 export const FormSignup = ({setFormData,formData,setForm}) => {
+  const [objNb, setObjNb] = useState(Object.keys(formData).length)
   const dispatch=useDispatch()
   const handleChangeSignUp=(value,key)=>setFormData({...formData,...{[key]:value}})
+  useEffect(() => {
+    const newArray = Object.values(formData).filter(data=>data.length>0)
+    setObjNb(Object.keys(newArray).length)
+  }, [formData])
   const handleSignUp=async()=>{
     dispatch(signUp(formData))
   }
@@ -40,7 +45,7 @@ export const FormSignup = ({setFormData,formData,setForm}) => {
             )}
         </div>
           <div className='flex justify-center'>
-              <Button variant='contained' className='text-third bg-base my-3 rounded-2xl w-full' onClick={handleSignUp}>SignUp</Button>
+              <Button disabled={objNb>3?false:true} variant='contained' className='text-third bg-base my-3 rounded-2xl w-full' onClick={handleSignUp}>SignUp</Button>
           </div>
       </form>
       <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Already have an account?

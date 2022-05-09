@@ -30,17 +30,6 @@ export const OurModal = () => {
     dispatch(createProject({...form,userId:user._id}))
     setOpen(false)
   }
-//   const useStyles = makeStyles({
-//     styling : {
-//       '& input':{
-//         background: 'linear-gradient(top, #f9f9f9, #e3e3e3)',
-//         borderRadius: '3px',
-//         outline: 'none',
-//         cursor: 'pointer'
-//       }
-//     },
-// })
-// const classes = useStyles()
   const fildsData =[
     {
       id:'title',
@@ -51,6 +40,7 @@ export const OurModal = () => {
     //   label:'1 hour cost',
     // },
   ]
+  console.log(form.title.trim().length)
   return (
     <>
       <Button onClick={handleOpen} className='text-third bg-base rounded-2xl'>Create a Project</Button>
@@ -76,14 +66,13 @@ export const OurModal = () => {
             //  ${classes.styling}
              >
               <label  htmlFor="contained-button-file">
-                
               <FileBase64 type='file' onDone={({base64})=>{handleForm('file64',base64)}} />
                   {/* <Typography variant='body1' className='cursor-pointer text-base border-2 border-base px-2 rounded-md font-bold block'>
                     Upload the Project Image</Typography> */}
               </label>
             </div>
             <div className='flex justify-center'>
-              <IconButton title='add Stadium' type="submit" icon={faAdd} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
+              <IconButton disabled={!form.title.trim().length>0} title='add Stadium' type="submit" icon={faAdd} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
             </div>
           </form>
         </Box>

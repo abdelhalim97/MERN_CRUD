@@ -1,16 +1,21 @@
-import {Button,TextField,Typography,React,Divider,Chip} from '@mui/material';
+import React,{useState,useEffect} from 'react'
+import {Button,TextField,Typography,Divider,Chip} from '@mui/material';
 import {GoogleLogin} from 'react-google-login'
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../actions/auth';
 import { googleSignUp } from '../../api';
 
 export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
+  const [objNb, setObjNb] = useState(Object.keys(formDataLogIn).length)
   const dispatch = useDispatch()
   const handleLogIn=async()=>{
     dispatch(signIn(formDataLogIn))
   }
-  const handleSetFormtoForgotPasword=()=>setForm('forgotPassword')
   const handleChangeLogIn=(value,key)=>setFormDataLogIn({...formDataLogIn,...{[key]:value}})
+  useEffect(() => {
+    const newArray = Object.values(formDataLogIn).filter(data=>data.length>0)
+    setObjNb(Object.keys(newArray).length)
+  }, [formDataLogIn])
   const dataLogin =[
     {
       id:'email',
@@ -40,20 +45,21 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
     },
     
   ]
-const responseS= async (res)=>{
-  const result = res?.profileObj
-  const token = res?.tokenId
-  try {
-    dispatch({type:'AUTH',data:{result,token}})
-    const gsignup=await googleSignUp(result)
-    await localStorage.setItem('profile',JSON.stringify({result:gsignup.data,token}))
-  } catch (error) {
-  console.log(error)
+  const responseS= async (res)=>{
+    const result = res?.profileObj
+    const token = res?.tokenId
+    try {
+      dispatch({type:'AUTH',data:{result,token}})
+      const gsignup=await googleSignUp(result)
+      await localStorage.setItem('profile',JSON.stringify({result:gsignup.data,token}))
+    } catch (error) {
+    console.log(error)
+    }
   }
-}
-const responseF=()=>{
-  console.log('fff')
-}
+  const responseF=()=>{
+    console.log('fff')
+  }
+  const handleSetFormtoForgotPasword=()=>setForm('forgotPassword')
   return (
       <>
         <div className='mx-auto w-5/6 my-2'>
@@ -64,7 +70,7 @@ const responseF=()=>{
         </div>
         {dataButtons2.map(data=>
           <div key={data.id} className='flex justify-center'>
-            <Button variant={data.variant} onClick={()=>{data.fnc()}} className={data.styles}>{data.title}</Button>
+            <Button disabled={objNb>1?false:true} variant={data.variant} onClick={()=>{data.fnc()}} className={data.styles}>{data.title}</Button>
           </div>
         )}
         <Divider className='my-3'>
