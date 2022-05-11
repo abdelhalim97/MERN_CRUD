@@ -40,7 +40,7 @@ export const OurModal = () => {
     //   label:'1 hour cost',
     // },
   ]
-  console.log(form.title.trim().length)
+  // console.log(form?.title?.trim()?.length)
   return (
     <>
       <Button onClick={handleOpen} className='text-third bg-base rounded-2xl'>Create a Project</Button>
@@ -72,7 +72,7 @@ export const OurModal = () => {
               </label>
             </div>
             <div className='flex justify-center'>
-              <IconButton disabled={!form.title.trim().length>0} title='add Stadium' type="submit" icon={faAdd} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
+              <IconButton disabled={!form?.title?.trim().length>0} title='add Stadium' type="submit" icon={faAdd} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
             </div>
           </form>
         </Box>
