@@ -8,7 +8,7 @@ export const Form = () => {
   const [forgetPassStat, setForgetPassStat] = useState(0)
   const [form, setForm] = useState('login')
   const [formData, setFormData] = useState({})
-  const [formDataLogIn, setFormDataLogIn] = useState({})
+  const [formDataLogIn, setFormDataLogIn] = useState({email:'abdelhalim@gmail.com',password:'123456'})//
   const dataButtons =[
     {
       id:0,
