@@ -35,12 +35,7 @@ export const OurModal = () => {
       id:'title',
       label:'name',
     },
-    // {
-    //   id:'leader',
-    //   label:'1 hour cost',
-    // },
   ]
-  // console.log(form?.title?.trim()?.length)
   return (
     <>
       <Button onClick={handleOpen} className='text-third bg-base rounded-2xl'>Create a Project</Button>

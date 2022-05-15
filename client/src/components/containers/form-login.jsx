@@ -20,12 +20,14 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
     {
       id:'email',
       label:"Email",
-      types:"email"
+      types:"email",
+      defaultValue:'abdelhalim@gmail.com'
     },
     {
       id:'password',
       label:"Password",
-      types:"password"
+      types:"password",
+      defaultValue:'123456'
     },
   ]
   const dataButtons2 =[
@@ -64,7 +66,7 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
       <>
         <div className='mx-auto w-5/6 my-2'>
           {dataLogin.map(data=>
-          <TextField variant='outlined' key={data.id} value={formDataLogIn[data.id]} onChange={(e)=>{handleChangeLogIn(e.target.value,data.id)}} 
+          <TextField variant='outlined' key={data.id} value={formDataLogIn[data.id]} defaultValue={data.defaultValue} onChange={(e)=>{handleChangeLogIn(e.target.value,data.id)}} 
           label={data.label} type={data.types} className="w-full my-1" />
           )}
         </div>
