@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import Grid from '@mui/material/Grid';
 import { LinkIconButton } from '../components/containers/units'
-import { faAddressCard,faRightFromBracket,faUserAlt } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard,faArrowAltCircleLeft,faArrowAltCircleRight,faRightFromBracket,faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route, useNavigate } from "react-router-dom";
 import { Home, Projects, UsersDashboard, Navbar, UpdateProject,ProjectsDashboard } from '../components';
@@ -9,8 +9,10 @@ import { ErrorPage } from '.'
 import { useDispatch, useSelector } from 'react-redux'
 import {getProjects} from '../actions/projects'
 import decode from 'jwt-decode'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Dashboard = () => {
+    const [dashBoardDisplay, setDashBoardDisplay] = useState(true)
     const navigate = useNavigate()
     const dispatch=useDispatch()
     const selector = useSelector((state)=>state.auth)
@@ -62,15 +64,16 @@ export const Dashboard = () => {
         }
       }, [])
   return (
-    <>
-        <Grid container style={{ minHeight:'93.4vh' }}>
-            {isAdmin && <Grid item xs={3} sm={2}  className='bg-sec relative ' >
-                <div className='text-third text-center text-sm sm:text-xl font-bold'>TRELLO</div>
+        <div className='relative md:static flex'>
+            {isAdmin && <div item xs={3} sm={2} className={`${dashBoardDisplay?'w-4/7 sm:w-1/4':'w-1/12 sm:w-1/12'} bg-sec md:w-1/5 lg:w-1/6 absolute md:static z-30`} style={{minHeight:'100vh'}}>
+                <div className={`${dashBoardDisplay?'opacity-100':'sm:opacity-0 opacity-0'} md:opacity-100 text-white text-center text-sm sm:text-xl font-bold`}>TRELLO</div>
                 {buttonsData.map(data=>
-                    <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
+                    <LinkIconButton key={data.id} dashBoardDisplay={dashBoardDisplay} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
                 )}
-            </Grid>}
-            <Grid item xs={isAdmin ? 9 : 12} sm={isAdmin ? 10 : 12} >
+                <FontAwesomeIcon icon={dashBoardDisplay?faArrowAltCircleLeft:faArrowAltCircleRight} onClick={()=>setDashBoardDisplay(!dashBoardDisplay)} 
+                    className='md:hidden absolute right-0 cursor-pointer text-third hover:text-black active:text-third z-40'/>
+            </div>}
+            <div className='w-full md:w-4/5 lg:w-5/6' >
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
@@ -80,8 +83,7 @@ export const Dashboard = () => {
                     {first&&<Route path="/projects/:id" element={<UpdateProject/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>
                 </Routes>
-            </Grid>
-        </Grid>
-    </>
+            </div>
+        </div>
   )
 }

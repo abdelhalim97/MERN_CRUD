@@ -4,7 +4,7 @@ import { faFacebook,faTwitter,faYoutube } from '@fortawesome/free-brands-svg-ico
 export const Footer = () => {
   return (
     <>
-        <div className='flex justify-between bg-base items-center  py-6' style={{ height:'7.6vh' }} >
+        <div className='flex justify-between bg-base py-1 w-full z-50'>
             <div className="text-center ml-3">
                 <a className="rounded-full no-underline hover:bg-third" href="https://www.facebook.com/EcolePolytechniqueSousse">
                     <FontAwesomeIcon icon={faFacebook} className="bg-base text-third hover:bg-third hover:text-base text-xl rounded-full px-1"/>

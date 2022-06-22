@@ -43,7 +43,7 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
       id:2,
       title:"Login",
       fnc:handleLogIn,
-      styles:'text-third bg-base my-3 rounded-2xl w-full',
+      styles:'text-third bg-base my-2 rounded-2xl w-full',
       variant:'contained'
     },
     
@@ -76,7 +76,7 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
             <Button disabled={objNb>1?false:true} variant={data.variant} onClick={()=>{data.fnc()}} className={data.styles}>{data.title}</Button>
           </div>
         )}
-        <Divider className='my-3'>
+        <Divider className='my-2'>
           <Chip label="OR" />
         </Divider>
         <div className='flex justify-center '>

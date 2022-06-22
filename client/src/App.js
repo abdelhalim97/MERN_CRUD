@@ -20,15 +20,16 @@ function App() {
 
   return (
       <BrowserRouter>
+        <div className="flex flex-col justify-between" style={{minHeight:'100vh'}}>
       {first&&<Dashboard/>}
         <Routes>
           {!first &&
-            (<Route path="/" element={<Login/>}></Route>)
+            (<Route path="/" element={<Login/>}/>)
           }
-          {!first &&<Route path="*" element={<ErrorPage/>}></Route>}
+          {!first &&<Route path="*" element={<ErrorPage/>}/>}
         </Routes>
-        {!first &&<div style={{ height:'53vh' }}></div>}
         <Footer/>
+        </div>
       </BrowserRouter>
   );
 }

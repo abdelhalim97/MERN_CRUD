@@ -43,11 +43,11 @@ export const Navbar = () => {
                   </div>
               </div>
               <div className={`flex-1 justify-center w-full pb-3 mt-8 md:flex md:pb-0 md:mt-0 ${ state ? 'block' : 'hidden'}`}>
-                  <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0 w-5/6">
+                  <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0 md:w-5/6 w-full">
                       {
                           navigation.map((item, idx) => {
                               return (
-                                <li key={idx} className="text-sec hover:text-base">
+                                <li key={idx} className="text-sec hover:text-base grid justify-center">
                                     <Link to={item.path}>
                                         { item.title }
                                     </Link>
@@ -56,7 +56,7 @@ export const Navbar = () => {
                           })
                       }
                   </ul>
-                  <div className='w-1/6 mt-8 md:mt-0'>
+                  <div className='md:w-1/6 mt-8 md:mt-0 grid justify-center w-full'>
                     <Button className='text-sec hover:text-base text-md border-base' variant='outlined' onClick={handleLogout}>logout</Button>
                   </div>
               </div>

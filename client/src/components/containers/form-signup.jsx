@@ -45,11 +45,11 @@ export const FormSignup = ({setFormData,formData,setForm}) => {
             )}
         </div>
           <div className='flex justify-center'>
-              <Button disabled={objNb>3?false:true} variant='contained' className='text-third bg-base my-3 rounded-2xl w-full' onClick={handleSignUp}>SignUp</Button>
+              <Button disabled={objNb>3?false:true} variant='contained' className='text-third bg-base my-2 rounded-2xl w-full' onClick={handleSignUp}>SignUp</Button>
           </div>
       </form>
-      <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Already have an account?
-          <Button variant='text' className='my-3 text-base text-xs' onClick={()=>{setForm('login')}}>LogIn</Button>
+      <Typography variant='subtitle2' className='my-2 text-sec text-center text-sm'>Already have an account?
+          <Button variant='text' className='my-2 text-base text-xs' onClick={()=>{setForm('login')}}>LogIn</Button>
       </Typography>
     </>
   )

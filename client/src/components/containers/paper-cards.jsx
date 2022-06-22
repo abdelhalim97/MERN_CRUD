@@ -33,7 +33,7 @@ export const PaperCards = () => {
   return (
     <>
         {data.map(data=>
-            <Grid key={data.id} item md={4}>
+            <Grid key={data.id} item sm={4} xs={12} >
                 <PaperCard icon={data.icon} desc={data.desc} nb={data.nb}/>
             </Grid>
         )}
